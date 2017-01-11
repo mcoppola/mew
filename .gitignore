@@ -3,3 +3,4 @@
 /public/js/_site-compiled.js
 .DS_Store
 npm-debug.log
+.next
