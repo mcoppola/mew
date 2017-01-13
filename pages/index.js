@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { style } from 'glamor'
 import * as  _ from 'lodash'
 import Head from 'next/head'
@@ -20,12 +21,16 @@ export default class extends React.Component {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <div {...styles.inner} className="cf mw7 mt5">
+          <div className="cf mv4">
+            <Link href="/"><h3 className="f6 measure-wide fl mr2">Home</h3></Link>
+            <Link href="/login"><h3 className="f6 measure-wide fl mr1">Login</h3></Link>
+          </div>
           <div className="w-50 fl">
             <h2 {...styles.title} className="f4 lh-title ttu">Lists</h2>
             <div {...styles.chart}>
             {this.props.lists.map((list, i) => {
               return (
-                  <p className="f5 lh-copy">{list.title} - {list._user.username}</p>
+                  <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><p className="f5 lh-copy">{list.title} - {list._user.username}</p></Link>
                 );
             })}
             </div>
