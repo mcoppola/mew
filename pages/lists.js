@@ -8,9 +8,7 @@ import axios from 'axios';
 
 export default class extends React.Component {
   static async getInitialProps (req) {
-    console.log(req.query);
     let list = await axios.get('http://localhost:4567/lists/'  + req.query.id  );
-    console.log(list.data);
     return { list: list.data }
   }
   render() {

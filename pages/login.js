@@ -6,10 +6,39 @@ import Head from 'next/head'
 import axios from 'axios';
 
 
+import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../utils/auth'
+
 export default class extends React.Component {
-  static async getInitialProps () {
-    return {}
+  static async getInitialProps (ctx) {
+
+    const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
+
+    return { msg: '' }
   }
+
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+
+  handleSubmit (e) {
+    e.preventDefault()
+
+    axios.post('http://localhost:4567/auth/login', {
+      username: this.refs.username.value,
+      password: this.refs.password.value
+    })
+    .then(res => {
+      let token = res.data.token
+      setToken(token)
+      this.props.url.replaceTo('/')
+    })
+    .catch( err => {
+      console.log(err);
+    })
+  }
+
   render() {
     return (
       <div>
@@ -21,10 +50,12 @@ export default class extends React.Component {
         <div {...styles.inner} className="cf mw7 mt5">
          <Link href="/"><h3 className="f6 measure-wide">Home</h3></Link>
 
+         { this.props.loginStatus }
+
          <h2 className="f6 mt5">Login</h2>
-         <form action="http://localhost:4567/auth/login" method="POST">
-           <input type="text" name="username" placeholder="username"/>
-           <input type="password" name="password" placeholder="password"/>
+         <form onSubmit={this.handleSubmit} action="http://localhost:4567/auth/login" method="POST">
+           <input type="text" ref="username" placeholder="username"/>
+           <input type="password" ref="password" placeholder="password"/>
            <input type="submit"/>
          </form>
         </div>
