@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { style } from 'glamor'
-import * as  _ from 'lodash'
 import Head from 'next/head'
 import axios from 'axios';
 

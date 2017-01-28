@@ -1,11 +1,9 @@
 {
-  "name": "node-bp",
+  "name": "mew",
   "version": "0.0.1",
   "private": true,
-  "repository": "https://github.com/mcoppola/node-bp.git",
+  "repository": "https://github.com/mcoppola/mew.git",
   "dependencies": {
-    "browserify": "*",
-    "colors": "*",
     "lodash": "*",
     "next": "^1.2.3",
     "axios": "*",

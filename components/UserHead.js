@@ -1,7 +1,6 @@
 import { style } from 'glamor'
-import axios from 'axios'
-
 import Link from 'next/link'
+import axios from 'axios'
 
 import { connection } from '../utils/api'
 
@@ -33,8 +32,8 @@ class UserHead extends React.Component {
   	return user ? 
   		(
   			<div>
+          <Link href="/logout"><h3 className="f6 f7 measure-wide fl mr1">Logout</h3></Link> 
 	  			<p className="dib f6" {...styles.user}>{this.state.user && this.state.user.username}</p>
-	  			<Link href="/logout"><h3 className="f6 f7 measure-wide fl mr1">Logout</h3></Link> 
   			</div>
   		) : (
   			<Link href="/login"><h3 className="f6 measure-wide fl mr1">Login</h3></Link>

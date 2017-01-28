@@ -1,16 +1,27 @@
 import React from 'react'
 import Link from 'next/link'
 import { style } from 'glamor'
-import * as  _ from 'lodash'
+import { } from 'lodash'
 import Head from 'next/head'
-import axios from 'axios';
+import axios from 'axios'
+
+import Header from '../components/Header'
+
+import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
+import { connection } from '../utils/api'
+
 
 
 export default class extends React.Component {
-  static async getInitialProps (req) {
-    let id = req.query.id || ''
-    let list = await axios.get('http://localhost:4567/lists/'  + id );
-    return { list: list.data }
+  static async getInitialProps (ctx) {
+    const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
+
+    let id = ctx.query.id || ''
+
+    let api = connection(userToken)
+    let list = await api.get('/lists/'  + id );
+
+    return { list: list.data, userToken }
   }
   render() {
     return (
@@ -22,7 +33,7 @@ export default class extends React.Component {
         </Head>
         <div>
           <div {...styles.inner} className="cf mw7 mt5">
-            <Link href="/"><h3 className="f6 measure-wide">Home</h3></Link>
+            <Header userToken={ this.props.userToken } />
             <h2 {...styles.title} className="f4 lh-title ttu">{this.props.list._user.username} / {this.props.list.title}</h2>
             <div {...styles.chart}>
             {this.props.list.albums.map((album, i) => {

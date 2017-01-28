@@ -1,13 +1,16 @@
 import React from 'react'
 import Link from 'next/link'
 import { style } from 'glamor'
-import * as  _ from 'lodash'
+import { } from 'lodash'
 import Head from 'next/head'
-import axios from 'axios';
+import axios from 'axios'
 
+import Header from '../../components/Header'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../../utils/auth'
 import { connection } from '../../utils/api'
+
+
 
 class CreateListForm extends React.Component {
   constructor(props) {
@@ -49,7 +52,7 @@ class CreateListForm extends React.Component {
           })
           .catch(err => console.log(err))
   }
-  
+
 
   render() {
 
@@ -90,8 +93,7 @@ export default class extends React.Component {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <div {...styles.inner} className="cf mw7 mt5">
-           <Link href="/"><h3 className="f6 measure-wide">Home</h3></Link>
-
+          <Header userToken={this.props.userToken} />
           <div className="cf mt3">
             <h6>New List</h6>
             <CreateListForm userToken={this.props.userToken} />
@@ -101,7 +103,6 @@ export default class extends React.Component {
     );
   }
 }
-
 
 
 const styles = {
