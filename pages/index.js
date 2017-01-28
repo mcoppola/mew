@@ -57,7 +57,7 @@ export default class extends React.Component {
                     <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><p className="f5 lh-copy">{list.title} - {list._user.username}</p></Link>
                   );
               })}
-              <div {...styles.add} className="f6">+ add list</div>
+              <Link href="/create/list" {...styles.add} className="f6">+ add list</Link>
             </div>
           </div>
           <div className="w-50 fl">

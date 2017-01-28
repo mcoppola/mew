@@ -7,6 +7,8 @@ import axios from 'axios';
 
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../utils/auth'
+import { connection } from '../utils/api'
+
 
 export default class extends React.Component {
   static async getInitialProps (ctx) {
