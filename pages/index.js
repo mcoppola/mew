@@ -7,25 +7,21 @@ import axios from 'axios';
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
 
+const connection = (user) => axios.create({
+    baseURL: 'http://localhost:4567/',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': user ||  null
+    }
+  })
+
 export default class extends React.Component {
   static async getInitialProps (ctx) {
 
     // Auth
     const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
-    const api = axios.create({
-        baseURL: 'http://localhost:4567/',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': loggedUser ||  null
-        }
-      });
 
-    let me;
-    if (loggedUser) {
-      api.get('/users/me')
-        .then(res => { me = res.data })
-        .catch(e => console.log(e))
-    }
+    let api = connection(loggedUser);    
 
     // Get data
     let users = await api.get('/users')
@@ -36,18 +32,34 @@ export default class extends React.Component {
       currentUrl: ctx.pathname,
       isAuthenticated: !!loggedUser,
       users: users.data,
-      lists: lists.data,
-      me: me
+      lists: lists.data
     }
   }
 
-  // static async getInitialState() {
+  constructor(props) {
+    super(props)
+    this.state = { user: null }
+  }
 
-  //   return { items: 'foo' };
-  // }
+  componentDidMount() {
+    let api = connection(this.props.loggedUser);
+
+    if (this.props.loggedUser) {
+      api.get('/users/me')
+        .then(res => { 
+          this.setState(
+            { 
+              user: res.data 
+            })
+        })
+        .catch(e => console.log(e))
+    }
+  }
+
 
   render() {
-    let user = this.props.isAuthenticated;
+    let user = this.props.isAuthenticated
+    let cnt = this.state.content
 
     return (
       <div>
@@ -66,8 +78,7 @@ export default class extends React.Component {
                 }
             </div>
             <div className="w-50 fl">
-              {user && <SuperSecretDiv />}
-              <h6 className="dib f6">{this.props.me && this.props.me.username + ' ' + this.state.items}</h6>
+              <p className="dib f6" {...styles.user}>{this.state.user && this.state.user.username}</p>
             </div>
           </div>
           <div className="w-50 fl">
@@ -102,6 +113,9 @@ const styles = {
   'inner': style({
     margin: '0 auto',
     color: 'rgb(97, 97, 97)'
+  }),
+  'user': style({
+    color: '#948bff'
   })
 }
 
