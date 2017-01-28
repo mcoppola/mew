@@ -2,64 +2,36 @@ import React, { PropTypes } from 'react'
 import Link from 'next/link'
 import { style } from 'glamor'
 import * as  _ from 'lodash'
+
 import Head from 'next/head'
-import axios from 'axios';
+import UserHead from '../components/UserHead'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
+import { connection } from '../utils/api'
 
-const connection = (user) => axios.create({
-    baseURL: 'http://localhost:4567/',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': user ||  null
-    }
-  })
 
 export default class extends React.Component {
   static async getInitialProps (ctx) {
 
     // Auth
-    const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
-
-    let api = connection(loggedUser);    
+    const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
+    let api = connection(userToken)
 
     // Get data
     let users = await api.get('/users')
     let lists = await api.get('/lists')
 
     return { 
-      loggedUser,
+      userToken,
       currentUrl: ctx.pathname,
-      isAuthenticated: !!loggedUser,
+      isAuthenticated: !!userToken,
       users: users.data,
       lists: lists.data
     }
   }
 
-  constructor(props) {
-    super(props)
-    this.state = { user: null }
-  }
-
-  componentDidMount() {
-    let api = connection(this.props.loggedUser);
-
-    if (this.props.loggedUser) {
-      api.get('/users/me')
-        .then(res => { 
-          this.setState(
-            { 
-              user: res.data 
-            })
-        })
-        .catch(e => console.log(e))
-    }
-  }
-
-
   render() {
     let user = this.props.isAuthenticated
-    let cnt = this.state.content
 
     return (
       <div>
@@ -72,23 +44,20 @@ export default class extends React.Component {
           <div className="cf mv4">
             <div className="w-50 fl">
               <Link href="/"><h3 className="f6 measure-wide fl mr2">Home</h3></Link>
-              { user ? 
-                  <Link href="/logout"><h3 className="f6 measure-wide fl mr1">Logout</h3></Link> :
-                  <Link href="/login"><h3 className="f6 measure-wide fl mr1">Login</h3></Link>
-                }
             </div>
             <div className="w-50 fl">
-              <p className="dib f6" {...styles.user}>{this.state.user && this.state.user.username}</p>
+              <UserHead userToken={ this.props.userToken } />
             </div>
           </div>
           <div className="w-50 fl">
             <h2 {...styles.title} className="f4 lh-title ttu">Lists</h2>
             <div {...styles.chart}>
-            {this.props.lists.map((list, i) => {
-              return (
-                  <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><p className="f5 lh-copy">{list.title} - {list._user.username}</p></Link>
-                );
-            })}
+              {this.props.lists.map((list, i) => {
+                return (
+                    <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><p className="f5 lh-copy">{list.title} - {list._user.username}</p></Link>
+                  );
+              })}
+              <div {...styles.add} className="f6">+ add list</div>
             </div>
           </div>
           <div className="w-50 fl">
@@ -116,15 +85,12 @@ const styles = {
   }),
   'user': style({
     color: '#948bff'
+  }),
+  'add': style({
+    color: '#137b23',
+    cursor: 'pointer'
   })
 }
-
-const SuperSecretDiv = () => (
-  <div>
-    USER LOGGED IN
-  </div>
-)
-
 
 
 // import defaultPage from '../views/defaultPage'
