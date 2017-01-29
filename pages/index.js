@@ -7,7 +7,7 @@ import Head from 'next/head'
 import Header from '../components/Header'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
-import { connection } from '../utils/api'
+import { apiRequest } from '../utils/api'
 
 
 
@@ -16,7 +16,7 @@ export default class extends React.Component {
 
     // Auth
     const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
-    let api = connection(userToken)
+    let api = apiRequest(userToken)
 
     // Get data
     let users = await api.get('/users')
@@ -48,10 +48,10 @@ export default class extends React.Component {
             <div {...styles.chart}>
               {this.props.lists.map((list, i) => {
                 return (
-                    <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><p className="f5 lh-copy">{list.title} - {list._user.username}</p></Link>
+                    <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><div className="f5 measure lh-copy mv2">{list.title} - {list._user.username}</div></Link>
                   );
               })}
-              <Link href="/create/list" {...styles.add} className="f6 lh-title ttu">+ add list</Link>
+              <Link href="/create/list" ><div className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black">+ add list</div></Link>
             </div>
           </div>
           <div className="w-50 fl">

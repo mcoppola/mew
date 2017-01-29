@@ -7,7 +7,7 @@ import axios from 'axios';
 import Header from '../components/Header'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../utils/auth'
-import { connection, errorMessage } from '../utils/api'
+import { apiRequest, errorMessage } from '../utils/api'
 
 
 export default class extends React.Component {
@@ -60,17 +60,20 @@ export default class extends React.Component {
           <Header userToken={ this.props.userToken } />
           {!this.state.showCreateForm && 
             <div>
-             <h2 className="f6 mt3">Login</h2>
-             <form onSubmit={this.handleLoginSubmit} action="http://localhost:4567/auth/login" method="POST">
-               <input className="f6" type="text" ref="username" placeholder="username"/>
-               <input className="f6" type="password" ref="password" placeholder="password"/>
-               <input className="f6" type="submit"/>
+              <form onSubmit={this.handleLoginSubmit} action="http://localhost:4567/auth/login" method="POST">
+                <div className="measure w-40">
+                  <label for="username" className="f6 b db mb2">Username</label>
+                  <input className="db input-reset f6 ba b--black-20 pa2 mb2 db w-100" ref="username" type="text"/>
+                  <label for="username" className="f6 b db mb2">Password</label>
+                  <input className="db input-reset f6 ba b--black-20 pa2 mb2 db w-100" ref="password" type="password"/>
+                  <input className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black pointer" type="submit" value="Login"/>
+                </div>
               </form>
+              {this.state.err && <div className="f6 mt2">{this.state.err}</div>}
             </div>
           }
-          {this.state.err && <div className="f6 mt2">{this.state.err}</div>}
           {this.state.showCreateForm && <CreateAccountForm />}
-          <div className="f6 mt2 dim pointer" onClick={this.toggleCreateForm}>{this.state.showCreateForm ? 'Login' : 'Create Account' }</div>
+          <div className="f6 mt3 dim pointer" onClick={this.toggleCreateForm}>{this.state.showCreateForm ? 'Back to Login' : 'Create Account' }</div>
         </div>
       </div>
     )
@@ -88,7 +91,7 @@ class CreateAccountForm extends React.Component {
   handleCreateSubmit(e) {
     e.preventDefault()
 
-    let api = connection()
+    let api = apiRequest()
 
     api.post('/users', {
       username: this.refs.username.value,
@@ -109,12 +112,18 @@ class CreateAccountForm extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="f6 mt3">Create Account</h2>
-        <form onSubmit={this.handleCreateSubmit} action="http://localhost:4567/auth/login" method="POST">
-          <input className="f6 db" type="text" ref="email" placeholder="email"/>
-          <input className="f6 db" type="text" ref="username" placeholder="username"/>
-          <input className="f6 db" type="password" ref="password" placeholder="password"/>
-          <input className="f6 db" type="submit"/>
+        <h2 className="f6 mt3 mb4">Create Account</h2>
+        <form className="w-40" onSubmit={this.handleCreateSubmit} action="http://localhost:4567/auth/login" method="POST">
+          <label for="username" className="f6 b db mb2">Email</label>
+          <input className="input-reset f6 db ba b--black-20 pa2 mb2 db w-100" type="text" ref="email"/>
+          <label for="username" className="f6 b db mb2">Username</label>
+          <input className="input-reset f6 db ba b--black-20 pa2 mb2 db w-100" type="text" ref="username"/>
+          <label for="username" className="f6 b db mb2">Password</label>
+          <input className="input-reset f6 db ba b--black-20 pa2 mb2 db w-100" type="password" ref="password"/>
+          <small id="password-desc" class="f6 lh-copy black-60 db mb2">
+              Must be 6 characters long and contain a number.
+            </small>
+          <input className="db f6 link dim ba ph3 pv2 mt2 mb2 near-black pointer" type="submit"/>
         </form>
         {this.state.err && <div className="f6 mt2">{this.state.err}</div>}
       </div>

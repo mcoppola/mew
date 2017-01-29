@@ -2,7 +2,7 @@ import { style } from 'glamor'
 import Link from 'next/link'
 import axios from 'axios'
 
-import { connection } from '../utils/api'
+import { apiRequest } from '../utils/api'
 
 
 class UserHead extends React.Component {
@@ -12,7 +12,7 @@ class UserHead extends React.Component {
   }
 
   componentDidMount() {
-    let api = connection(this.props.userToken);
+    let api = apiRequest(this.props.userToken);
 
     if (this.props.userToken) {
       api.get('/users/me')

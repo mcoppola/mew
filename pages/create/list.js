@@ -1,24 +1,33 @@
 import React from 'react'
 import Link from 'next/link'
 import { style } from 'glamor'
-import { } from 'lodash'
+import { merge } from 'lodash'
 import Head from 'next/head'
 import axios from 'axios'
 
 import Header from '../../components/Header'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../../utils/auth'
-import { connection } from '../../utils/api'
+import { apiRequest } from '../../utils/api'
+import { searchAlbums } from '../../utils/lastfm'
+
 
 
 
 class CreateListForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { list: [], title: '', saved: false }
+    this.state = { 
+      list: [], 
+      title: '', 
+      saved: false,
+      album: '', 
+      searchResults: [] 
+    }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.saveList = this.saveList.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.saveList = this.saveList.bind(this)
+    this.searchAlbums = this.searchAlbums.bind(this)
   }
 
 
@@ -35,7 +44,7 @@ class CreateListForm extends React.Component {
   }
 
   async saveList(e) {
-    let api = connection(this.props.userToken)
+    let api = apiRequest(this.props.userToken)
     let id;
 
     await api.get('/users/me')
@@ -53,6 +62,21 @@ class CreateListForm extends React.Component {
           .catch(err => console.log(err))
   }
 
+  searchAlbums(e) {
+
+    console.log('searchalbum this.value', e.target.value);
+    this.setState({album: e.target.value});
+
+    searchAlbums(e.target.value)
+      .get('/')
+      .then(res => {
+        console.log(res.data.results)
+        console.log(res.data.results.albummatches.album)
+        this.setState({ searchResults: res.data.results.albummatches.album.slice(0,9) })
+      })
+      .catch(err => console.log(err))
+  }
+
 
   render() {
 
@@ -67,7 +91,18 @@ class CreateListForm extends React.Component {
           <div className="cf">
             {listItems}
           </div>
-           <input className="f6" type="text" ref="newListItem" placeholder="Artist - Album"/>
+           <input className="f6" type="text" ref="newListItem" value={this.state.album} onChange={this.searchAlbums} placeholder="Artist / Album"/>
+           <div className="f6">{this.state.searchResults.map(
+              album => 
+                <div className="cf album-item mw6 dim pointer shadow" data={album}>
+                  <div className="w-10 fl">
+                    <img width="40" height="40" src={album.image[1]['#text']} alt=""/>
+                  </div>
+                  <div className="f-90 fl">
+                    { album.artist } - { album.name }
+                  </div>
+                </div>
+           )}</div>
            <input type="submit"/>
          </form>
 
