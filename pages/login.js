@@ -4,26 +4,29 @@ import { style } from 'glamor'
 import Head from 'next/head'
 import axios from 'axios';
 
+import Header from '../components/Header'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../utils/auth'
-import { connection } from '../utils/api'
+import { connection, errorMessage } from '../utils/api'
 
 
 export default class extends React.Component {
   static async getInitialProps (ctx) {
+    const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
 
-    const loggedUser = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
-
-    return { msg: '' }
+    return { userToken }
   }
 
   constructor(props) {
     super(props)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
+    this.toggleCreateForm = this.toggleCreateForm.bind(this)
+
+    this.state = { showCreateForm: false, err: null }
   }
 
 
-  handleSubmit (e) {
+  handleLoginSubmit (e) {
     e.preventDefault()
 
     axios.post('http://localhost:4567/auth/login', {
@@ -36,8 +39,13 @@ export default class extends React.Component {
       this.props.url.replaceTo('/')
     })
     .catch( err => {
-      console.log(err);
+      this.setState({ err: errorMessage(err) })
     })
+  }
+
+  toggleCreateForm (e) {
+    e.preventDefault()
+    this.setState({ showCreateForm: !this.state.showCreateForm })
   }
 
   render() {
@@ -49,19 +57,68 @@ export default class extends React.Component {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <div {...styles.inner} className="cf mw7 mt5">
-         <Link href="/"><h3 className="f6 measure-wide">Home</h3></Link>
-
-         { this.props.loginStatus }
-
-         <h2 className="f6 mt5">Login</h2>
-         <form onSubmit={this.handleSubmit} action="http://localhost:4567/auth/login" method="POST">
-           <input type="text" ref="username" placeholder="username"/>
-           <input type="password" ref="password" placeholder="password"/>
-           <input type="submit"/>
-         </form>
+          <Header userToken={ this.props.userToken } />
+          {!this.state.showCreateForm && 
+            <div>
+             <h2 className="f6 mt3">Login</h2>
+             <form onSubmit={this.handleLoginSubmit} action="http://localhost:4567/auth/login" method="POST">
+               <input className="f6" type="text" ref="username" placeholder="username"/>
+               <input className="f6" type="password" ref="password" placeholder="password"/>
+               <input className="f6" type="submit"/>
+              </form>
+            </div>
+          }
+          {this.state.err && <div className="f6 mt2">{this.state.err}</div>}
+          {this.state.showCreateForm && <CreateAccountForm />}
+          <div className="f6 mt2 dim pointer" onClick={this.toggleCreateForm}>{this.state.showCreateForm ? 'Login' : 'Create Account' }</div>
         </div>
       </div>
-    );
+    )
+  }
+}
+
+
+class CreateAccountForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleCreateSubmit = this.handleCreateSubmit.bind(this)
+
+    this.state = { err: null, msg: null }
+  }
+  handleCreateSubmit(e) {
+    e.preventDefault()
+
+    let api = connection()
+
+    api.post('/users', {
+      username: this.refs.username.value,
+      password: this.refs.password.value,
+      email: this.refs.email.value
+    })
+    .then(res => {
+      let token = res.data.token
+      setToken(token)
+      this.setState({ err: 'Logged in!' })
+    })
+    .catch( err => {
+      this.setState({ err:  errorMessage(err) })
+    })
+
+  }
+
+  render() {
+    return (
+      <div>
+        <h2 className="f6 mt3">Create Account</h2>
+        <form onSubmit={this.handleCreateSubmit} action="http://localhost:4567/auth/login" method="POST">
+          <input className="f6 db" type="text" ref="email" placeholder="email"/>
+          <input className="f6 db" type="text" ref="username" placeholder="username"/>
+          <input className="f6 db" type="password" ref="password" placeholder="password"/>
+          <input className="f6 db" type="submit"/>
+        </form>
+        {this.state.err && <div className="f6 mt2">{this.state.err}</div>}
+      </div>
+    )
   }
 }
 
@@ -73,3 +130,5 @@ const styles = {
     color: 'rgb(97, 97, 97)'
   })
 }
+
+
