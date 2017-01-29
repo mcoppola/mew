@@ -22,3 +22,13 @@ export const searchAlbums = (q = '') => axios.create({
     album: q
   }
 })
+
+export const getAlbums = (q = []) => axios.create({
+  baseURL: 'http://ws.audioscrobbler.com/2.0/',
+  params: {
+    format: 'json',
+    api_key: '058345110c4d0a9174fa2a8171d81487',
+    method: 'album.getInfo',
+    mip: q
+  }
+})

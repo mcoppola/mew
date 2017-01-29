@@ -41,27 +41,29 @@ export default class extends React.Component {
           <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css"/>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
-        <div {...styles.inner} className="cf mw7 mt5">
-          <Header userToken={ this.props.userToken } />
-          <div className="w-50 fl">
-            <h2 {...styles.title} className="f4 lh-title ttu">Lists</h2>
-            <div {...styles.chart}>
-              {this.props.lists.map((list, i) => {
+        <div className="h-100">
+          <div {...styles.inner} className="cf mw7 mt5">
+            <Header userToken={ this.props.userToken } />
+            <div className="w-50 fl">
+              <h2 {...styles.title} className="f4 lh-title ttu purple">Lists</h2>
+              <div {...styles.chart}>
+                {this.props.lists.map((list, i) => {
+                  return (
+                      <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><div className="f5 measure lh-copy mv2">{list.title} - {list._user.username}</div></Link>
+                    );
+                })}
+                <Link href="/create/list" ><div className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black">+ add list</div></Link>
+              </div>
+            </div>
+            <div className="w-50 fl">
+              <h2 {...styles.title} className="f4 lh-title ttu">users</h2>
+              <div {...styles.chart}>
+              {this.props.users.map((user, i) => {
                 return (
-                    <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><div className="f5 measure lh-copy mv2">{list.title} - {list._user.username}</div></Link>
+                    <p className="f5 lh-copy">{user.username}</p>
                   );
               })}
-              <Link href="/create/list" ><div className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black">+ add list</div></Link>
-            </div>
-          </div>
-          <div className="w-50 fl">
-            <h2 {...styles.title} className="f4 lh-title ttu">users</h2>
-            <div {...styles.chart}>
-            {this.props.users.map((user, i) => {
-              return (
-                  <p className="f5 lh-copy">{user.username}</p>
-                );
-            })}
+              </div>
             </div>
           </div>
         </div>
