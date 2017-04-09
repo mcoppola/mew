@@ -68,8 +68,6 @@ class CreateListForm extends React.Component {
           .then(res =>  id = res.data.id)
           .catch(err => errorMessage(e))
 
-    console.log('albums:', albums);
-
 
     // create albums refs in our db
     await Promise.all(

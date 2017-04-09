@@ -53,7 +53,7 @@ export default class extends React.Component {
       <div>
         <Head>
           <title>Mew</title>
-          <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css"/>
+          <link rel="stylesheet" href="/public/tachyons.min.css"/>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <div {...styles.inner} className="cf mw7 mt5">

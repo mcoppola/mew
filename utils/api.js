@@ -11,7 +11,6 @@ export const apiRequest = (user) => axios.create({
 
 export const errorMessage = (error) => {
 	let err = error.response.data
-	console.log(err);
 	if (err.errors) {
 		return Object.keys(err.errors).map(k => err.errors[k]).join(' ')
 	} else if (err.message) {
