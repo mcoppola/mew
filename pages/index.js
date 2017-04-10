@@ -38,7 +38,7 @@ export default class extends React.Component {
       <div>
         <Head>
           <title>Mew</title>
-          <link rel="stylesheet" href="/public/tachyons.min.css"/>
+          <link rel="stylesheet" href="/static/tachyons.min.css"/>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <div className="h-100">
