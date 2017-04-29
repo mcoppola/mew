@@ -19,12 +19,45 @@ export default class extends React.Component {
 
   constructor(props) {
     super(props)
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.toggleCreateForm = this.toggleCreateForm.bind(this)
 
     this.state = { showCreateForm: false, err: null }
   }
 
+
+  toggleCreateForm (e) {
+    e.preventDefault()
+    this.setState({ showCreateForm: !this.state.showCreateForm })
+  }
+
+  render() {
+    return (
+      <div>
+        <Head>
+          <title>Mew</title>
+          <link rel="stylesheet" href="/static/tachyons.min.css"/>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
+        <div {...styles.inner} className="cf mw7 mt5">
+          <Header userToken={ this.props.userToken } />
+          {!this.state.showCreateForm && <LoginForm />}
+          {this.state.showCreateForm && <CreateAccountForm />}
+          <div className="f6 mt3 dim pointer" onClick={this.toggleCreateForm}>{this.state.showCreateForm ? 'Back to Login' : 'Create Account' }</div>
+        </div>
+      </div>
+    )
+  }
+}
+
+
+
+class LoginForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
+
+    this.state = { err: null, msg: null }
+  }
 
   handleLoginSubmit (e) {
     e.preventDefault()
@@ -43,42 +76,26 @@ export default class extends React.Component {
     })
   }
 
-  toggleCreateForm (e) {
-    e.preventDefault()
-    this.setState({ showCreateForm: !this.state.showCreateForm })
-  }
-
   render() {
     return (
       <div>
-        <Head>
-          <title>Mew</title>
-          <link rel="stylesheet" href="/public/tachyons.min.css"/>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head>
-        <div {...styles.inner} className="cf mw7 mt5">
-          <Header userToken={ this.props.userToken } />
-          {!this.state.showCreateForm && 
-            <div>
-              <form onSubmit={this.handleLoginSubmit} action="http://localhost:4567/auth/login" method="POST">
-                <div className="measure w-40">
-                  <label for="username" className="f6 b db mb2">Username</label>
-                  <input className="db input-reset f6 ba b--black-20 pa2 mb2 db w-100" ref="username" type="text"/>
-                  <label for="username" className="f6 b db mb2">Password</label>
-                  <input className="db input-reset f6 ba b--black-20 pa2 mb2 db w-100" ref="password" type="password"/>
-                  <input className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black pointer" type="submit" value="Login"/>
-                </div>
-              </form>
-              {this.state.err && <div className="f6 mt2">{this.state.err}</div>}
-            </div>
-          }
-          {this.state.showCreateForm && <CreateAccountForm />}
-          <div className="f6 mt3 dim pointer" onClick={this.toggleCreateForm}>{this.state.showCreateForm ? 'Back to Login' : 'Create Account' }</div>
-        </div>
+        <form onSubmit={this.handleLoginSubmit} action="http://localhost:4567/auth/login" method="POST">
+          <div className="measure w-40">
+            <label for="username" className="f6 b db mb2">Username</label>
+            <input className="db input-reset f6 ba b--black-20 pa2 mb2 db w-100" ref="username" type="text"/>
+            <label for="username" className="f6 b db mb2">Password</label>
+            <input className="db input-reset f6 ba b--black-20 pa2 mb2 db w-100" ref="password" type="password"/>
+            <input className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black pointer" type="submit" value="Login"/>
+          </div>
+        </form>
+        {this.state.err && <div className="f6 mt2">{this.state.err}</div>}
       </div>
     )
   }
 }
+
+
+
 
 
 class CreateAccountForm extends React.Component {
