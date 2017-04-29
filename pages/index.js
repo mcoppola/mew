@@ -13,21 +13,13 @@ import { apiRequest } from '../utils/api'
 
 export default class extends React.Component {
   static async getInitialProps (ctx) {
-
     // Auth
     const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
-    let api = apiRequest(userToken)
-
-    // Get data
-    let users = await api.get('/users')
-    let lists = await api.get('/lists')
 
     return { 
       userToken,
       currentUrl: ctx.pathname,
       isAuthenticated: !!userToken,
-      users: users.data,
-      lists: lists.data
     }
   }
 
@@ -47,28 +39,79 @@ export default class extends React.Component {
             <div className="w-50 fl">
               <h2 {...styles.title} className="f4 lh-title ttu purple">Lists</h2>
               <div {...styles.chart}>
-                {this.props.lists.map((list, i) => {
-                  return (
-                      <Link href={"/lists?id=" + list._id} as={list._user.username + "/" + list.title}><div className="f5 measure lh-copy mv2">{list.title} - {list._user.username}</div></Link>
-                    );
-                })}
+                { <Lists userToken={ this.props.userToken } /> }
                 <Link href="/create/list" ><div className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black">+ add list</div></Link>
               </div>
             </div>
             <div className="w-50 fl">
               <h2 {...styles.title} className="f4 lh-title ttu">users</h2>
               <div {...styles.chart}>
-              {this.props.users.map((user, i) => {
-                return (
-                    <p className="f5 lh-copy">{user.username}</p>
-                  );
-              })}
+              <Users />
               </div>
             </div>
           </div>
         </div>
       </div>
     );
+  }
+}
+
+// All Lists
+
+class Lists extends React.Component {
+  constructor(props) {
+    super(props)
+    this.fetchLists = this.fetchLists.bind(this)
+    this.fetchLists()
+    this.state = { err: 'Loading Lists...', lists: [] }
+  }
+
+  async fetchLists() {
+    let api = apiRequest(this.props.userToken)
+    let lists = await api.get('/lists')
+    this.setState({ lists: lists.data, err: null })
+  }
+
+  render () {
+    return (
+      <div>
+        {this.state.err && <p>{this.state.err}</p>}
+        {this.state.lists.map( l => 
+            <Link href={"/lists?id=" + l._id} as={l._user.username + "/" + l.title}><div className="f5 measure lh-copy mv2">{l.title} - {l._user.username}</div></Link>
+        )}
+      </div>
+    )
+  }
+}
+
+// Users list
+
+class Users extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.fetchUsers = this.fetchUsers.bind(this)
+    this.fetchUsers()
+    this.state = { err: 'Loading Users...', users: [] }
+  }
+
+  async fetchUsers() {
+    let api = apiRequest(this.props.userToken)
+    let users = await api.get('/users')
+    this.setState({ users: users.data, err: null })
+  }
+
+  render(){
+    return (
+      <div>
+        {this.state.err && <p>{this.state.err}</p>}
+        {this.state.users.map( u => {
+          return (
+              <p className="f5 lh-copy">{u.username}</p>
+            )
+        })}
+      </div>
+    )
   }
 }
 
