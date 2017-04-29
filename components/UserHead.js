@@ -17,10 +17,7 @@ class UserHead extends React.Component {
     if (this.props.userToken) {
       api.get('/users/me')
         .then(res => { 
-          this.setState(
-            { 
-              user: res.data 
-            })
+          this.setState({ user: res.data })
         })
         .catch(e => console.log(e))
     }

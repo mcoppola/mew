@@ -16,16 +16,10 @@ export default class extends React.Component {
     // Auth
     const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
 
-    return { 
-      userToken,
-      currentUrl: ctx.pathname,
-      isAuthenticated: !!userToken,
-    }
+    return { userToken }
   }
 
   render() {
-    let user = this.props.isAuthenticated
-
     return (
       <div>
         <Head>
@@ -61,12 +55,10 @@ export default class extends React.Component {
 class Lists extends React.Component {
   constructor(props) {
     super(props)
-    this.fetchLists = this.fetchLists.bind(this)
-    this.fetchLists()
-    this.state = { err: 'Loading Lists...', lists: [] }
+    this.state = { err: 'loading lists...', lists: [] }
   }
 
-  async fetchLists() {
+  async componentDidMount() {
     let api = apiRequest(this.props.userToken)
     let lists = await api.get('/lists')
     this.setState({ lists: lists.data, err: null })
@@ -88,14 +80,11 @@ class Lists extends React.Component {
 
 class Users extends React.Component {
   constructor(props) {
-    super(props);
-    
-    this.fetchUsers = this.fetchUsers.bind(this)
-    this.fetchUsers()
-    this.state = { err: 'Loading Users...', users: [] }
+    super(props)
+    this.state = { err: 'loading users...', users: [] }
   }
 
-  async fetchUsers() {
+  async componentDidMount() {
     let api = apiRequest(this.props.userToken)
     let users = await api.get('/users')
     this.setState({ users: users.data, err: null })
