@@ -19,6 +19,12 @@ export default class extends React.Component {
 	  }
   }
   render() {
-  	return;
+  	return(
+      <div>
+        <Head>
+          <title>Mew - Logout</title>
+          <link rel="stylesheet" href="/static/tachyons.min.css"/>
+        </Head>
+      </div>)
   }
 }

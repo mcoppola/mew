@@ -92,9 +92,9 @@ class CreateListForm extends React.Component {
             _albums: albums
           })
           .then(res => { 
-            this.setState({ saved: true }) 
+            this.setState({ saved: true, err: null }) 
           })
-          .catch(err => errorMessage(e))
+          .catch(e => this.setState({ err: errorMessage(e) }))
   }
 
 
@@ -182,8 +182,7 @@ export default class extends React.Component {
       <div>
         <Head>
           <title>Mew</title>
-          <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css"/>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <link rel="stylesheet" href="/static/tachyons.min.css"/>
         </Head>
         <div {...styles.inner} className="cf mw7 mt5">
           <Header userToken={this.props.userToken} />

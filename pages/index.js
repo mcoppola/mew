@@ -25,7 +25,6 @@ export default class extends React.Component {
         <Head>
           <title>Mew</title>
           <link rel="stylesheet" href="/static/tachyons.min.css"/>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <div className="h-100">
           <div {...styles.inner} className="cf mw7 mt5">
@@ -60,7 +59,7 @@ class Lists extends React.Component {
 
   async componentDidMount() {
     let api = apiRequest(this.props.userToken)
-    let lists = await api.get('/lists')
+    let lists = await api.get('/lists?limit=10')
     this.setState({ lists: lists.data, err: null })
   }
 
