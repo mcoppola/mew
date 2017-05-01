@@ -1,7 +1,6 @@
 import React from 'react'
-import Head from 'next/head'
 import axios from 'axios';
-
+import Head from '../components/Head'
 
 import { unsetToken, getToken } from '../utils/auth'
 
@@ -21,10 +20,7 @@ export default class extends React.Component {
   render() {
   	return(
       <div>
-        <Head>
-          <title>Mew - Logout</title>
-          <link rel="stylesheet" href="/static/tachyons.min.css"/>
-        </Head>
+        <Head title="Mew - Logout"/>
       </div>)
   }
 }

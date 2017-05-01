@@ -5,13 +5,11 @@ import { merge } from 'lodash'
 import Head from 'next/head'
 import axios from 'axios'
 
-import Header from '../../components/Header'
+import Nav from '../../components/Nav'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../../utils/auth'
 import { apiRequest, errorMessage } from '../../utils/api'
 import { searchAlbums } from '../../utils/lastfm'
-
-
 
 
 class CreateListForm extends React.Component {
@@ -185,7 +183,7 @@ export default class extends React.Component {
           <link rel="stylesheet" href="/static/tachyons.min.css"/>
         </Head>
         <div {...styles.inner} className="cf mw7 mt5">
-          <Header userToken={this.props.userToken} />
+          <Nav userToken={this.props.userToken} />
           <div className="cf mt3">
             <h3 className="mb5">New List</h3>
             <CreateListForm userToken={this.props.userToken} />

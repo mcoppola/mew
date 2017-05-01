@@ -3,8 +3,9 @@ import Link from 'next/link'
 import { style } from 'glamor'
 import * as  _ from 'lodash'
 
-import Head from 'next/head'
-import Header from '../components/Header'
+
+import Head from '../components/Head'
+import Nav from '../components/Nav'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
 import { apiRequest } from '../utils/api'
@@ -22,13 +23,10 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        <Head>
-          <title>Mew</title>
-          <link rel="stylesheet" href="/static/tachyons.min.css"/>
-        </Head>
+        <Head/>
         <div className="h-100">
           <div {...styles.inner} className="cf mw7 mt5">
-            <Header userToken={ this.props.userToken } />
+            <Nav userToken={ this.props.userToken } />
             <div className="w-50 fl">
               <h2 {...styles.title} className="f4 lh-title ttu purple">Lists</h2>
               <div {...styles.chart}>

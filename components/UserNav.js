@@ -5,7 +5,7 @@ import axios from 'axios'
 import { apiRequest } from '../utils/api'
 
 
-class UserHead extends React.Component {
+class UserNav extends React.Component {
   constructor(props) {
     super(props)
     this.state = { user: null }
@@ -45,4 +45,4 @@ const styles = {
 }
 
 
-export default UserHead
+export default UserNav

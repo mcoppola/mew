@@ -4,7 +4,7 @@ import { style } from 'glamor'
 import Head from 'next/head'
 import axios from 'axios';
 
-import Header from '../components/Header'
+import Nav from '../components/Nav'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../utils/auth'
 import { apiRequest, errorMessage } from '../utils/api'
@@ -39,7 +39,7 @@ export default class extends React.Component {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <div {...styles.inner} className="cf mw7 mt5">
-          <Header userToken={ this.props.userToken } />
+          <Nav userToken={ this.props.userToken } />
           {!this.state.showCreateForm && <LoginForm />}
           {this.state.showCreateForm && <CreateAccountForm />}
           <div className="f6 mt3 dim pointer" onClick={this.toggleCreateForm}>{this.state.showCreateForm ? 'Back to Login' : 'Create Account' }</div>

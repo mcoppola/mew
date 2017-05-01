@@ -32,7 +32,7 @@ const errorCodeMessages = {
 
 function translateErrorCode(msg) {
 	let strings = msg.toString().split(' ')
-	
+
 	for (let i = 0; i < strings.length; i++) {
 		if (Object.keys(errorCodeMessages).indexOf(strings[i]) > -1 ) {
 			return errorCodeMessages[strings[i]].msg

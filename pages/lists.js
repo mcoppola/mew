@@ -5,7 +5,7 @@ import { } from 'lodash'
 import Head from 'next/head'
 import axios from 'axios'
 
-import Header from '../components/Header'
+import Nav from '../components/Nav'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
 import { apiRequest, errorMessage } from '../utils/api'
@@ -38,7 +38,7 @@ export default class extends React.Component {
         </Head>
         <div>
           <div {...styles.inner} className="cf mw7 mt5">
-            <Header userToken={ this.props.userToken } />
+            <Nav userToken={ this.props.userToken } />
             <h2 {...styles.title} className="f4 lh-title ttu">{l && l._user.username} / {l && l.title}</h2>
             <div {...styles.chart}>
             {l && l._albums.map((album, i) => {
