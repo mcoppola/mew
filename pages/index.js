@@ -60,14 +60,21 @@ class Albums extends React.Component {
   }
 
   async componentDidMount() {
-    await this.fetchAlbums()
+    this.fetchAlbums()
+
+    setInterval(this.fetchAlbums, 5*1000)
   }
 
   async fetchAlbums() {
     let api = apiRequest(this.props.userToken)
     let res = await api.get('/albums?limit=10')
-    let albums = R.reverse(R.sortBy(R.prop('points'), res.data))
+    let albums = this.sortByPoints(res.data)
+
     this.setState({ albums, err: null })
+  }
+
+  sortByPoints(list) {
+    return R.reverse(R.sortBy(R.prop('pointsNow'), list))
   }
 
   async upvoteAlbum(album) {
@@ -97,7 +104,8 @@ class Albums extends React.Component {
         {this.state.albums.map( a => 
           <div>
             <div className="fl mr2 pointer dim" onClick={this.upvoteAlbum.bind(null, a._id)}>upvote</div>
-            <div className="fl mr2">{a.points}</div>
+            <div className="fl mr2 green">{a.pointsNow}</div>
+            <div className="fl mr2">{a.pointsTotal}</div>
             <Link className="fl" href={"/albums?id=" + a._id}><div className="f5 measure lh-copy mv2">{a.title}</div></Link>
           </div>
         )}
