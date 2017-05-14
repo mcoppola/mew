@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react'
 import Link from 'next/link'
 import { style } from 'glamor'
 import * as  _ from 'lodash'
-
+import * as R from 'ramda'
 
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
-import { apiRequest } from '../utils/api'
+import { apiRequest, errorMessage } from '../utils/api'
 
 
 
@@ -28,9 +28,9 @@ export default class extends React.Component {
           <div {...styles.inner} className="cf mw7 mt5">
             <Nav userToken={ this.props.userToken } />
             <div className="w-50 fl">
-              <h2 {...styles.title} className="f4 lh-title ttu purple">Lists</h2>
+              <h2 {...styles.title} className="f4 lh-title ttu purple">Albums</h2>
               <div {...styles.chart}>
-                { <Lists userToken={ this.props.userToken } /> }
+                { <Albums userToken={ this.props.userToken } /> }
                 <Link href="/create/list" ><div className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black">+ add list</div></Link>
               </div>
             </div>
@@ -44,6 +44,65 @@ export default class extends React.Component {
         </div>
       </div>
     );
+  }
+}
+
+
+// Top Albums
+
+class Albums extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { err: 'loading albums...', albums: [] }
+
+    this.fetchAlbums = this.fetchAlbums.bind(this)
+    this.upvoteAlbum = this.upvoteAlbum.bind(this)
+  }
+
+  async componentDidMount() {
+    await this.fetchAlbums()
+  }
+
+  async fetchAlbums() {
+    let api = apiRequest(this.props.userToken)
+    let res = await api.get('/albums?limit=10')
+    let albums = R.reverse(R.sortBy(R.prop('points'), res.data))
+    this.setState({ albums, err: null })
+  }
+
+  async upvoteAlbum(album) {
+    let api = apiRequest(this.props.userToken)
+    let id
+
+    // get user id
+    await api.get('/users/me')
+          .then(res =>  id = res.data.id)
+          .catch(err => this.setState({ err: errorMessage(err) }))
+
+    // post upvote
+    let albums = await api.post('/points', {
+      _user: id,
+      action: 'upvote',
+      album: album
+    })
+    // refetch albums
+    .then(this.fetchAlbums)
+    .catch(err => this.setState({ err: errorMessage(err) }))
+  }
+
+  render () {
+    return (
+      <div>
+        {this.state.err && <p className="red">{this.state.err}</p>}
+        {this.state.albums.map( a => 
+          <div>
+            <div className="fl mr2 pointer dim" onClick={this.upvoteAlbum.bind(null, a._id)}>upvote</div>
+            <div className="fl mr2">{a.points}</div>
+            <Link className="fl" href={"/albums?id=" + a._id}><div className="f5 measure lh-copy mv2">{a.title}</div></Link>
+          </div>
+        )}
+      </div>
+    )
   }
 }
 

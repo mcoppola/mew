@@ -5,6 +5,7 @@
   "repository": "https://github.com/mcoppola/mew.git",
   "dependencies": {
     "lodash": "*",
+    "ramda": "*",
     "next": "^1.2.3",
     "axios": "*",
     "js-cookie": "2.1.3",
