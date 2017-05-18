@@ -6,6 +6,8 @@ import * as R from 'ramda'
 
 import Head from '../components/Head'
 import Nav from '../components/Nav'
+import AlbumSearchInput from '../components/AlbumSearchInput'
+
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
 import { apiRequest, errorMessage } from '../utils/api'
@@ -20,6 +22,32 @@ export default class extends React.Component {
     return { userToken }
   }
 
+  constructor(props) {
+    super(props)
+
+    this.onAlbumSelect = this.onAlbumSelect.bind(this)
+    this.state = { selectedAlbum: null } 
+  }
+
+  async onAlbumSelect(album) {
+    let api = apiRequest(this.props.userToken)
+        // get user id
+    let id = await api.get('/users/me')
+          .then(res =>  id = res.data.id)
+          .catch(err => errorMessage(e))
+
+    // post new album
+    api.post('/albums', { 
+      _user: id,
+      title: album.name,
+      artist: album.artist,
+      image: album.image.map(i => i['#text']),
+      mbid: album.mbid
+    })
+
+    this.setState({ selectedAlbum: album })
+  }
+
   render() {
     return (
       <div>
@@ -30,7 +58,8 @@ export default class extends React.Component {
             <div className="w-50 fl">
               <h2 {...styles.title} className="f4 lh-title ttu purple">Albums</h2>
               <div {...styles.chart}>
-                { <Albums userToken={ this.props.userToken } /> }
+                { <Albums userToken={ this.props.userToken } selected={ this.state.selectedAlbum }/> }
+                { <AlbumSearchInput onSelect={ this.onAlbumSelect} /> }
                 <Link href="/create/list" ><div className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black">+ add list</div></Link>
               </div>
             </div>
@@ -101,12 +130,15 @@ class Albums extends React.Component {
     return (
       <div>
         {this.state.err && <p className="red">{this.state.err}</p>}
-        {this.state.albums.map( a => 
-          <div>
-            <div className="fl mr2 pointer dim" onClick={this.upvoteAlbum.bind(null, a._id)}>upvote</div>
-            <div className="fl mr2 green">{a.pointsNow}</div>
-            <div className="fl mr2">{a.pointsTotal}</div>
-            <Link className="fl" href={"/albums?id=" + a._id}><div className="f5 measure lh-copy mv2">{a.title}</div></Link>
+        {this.state.albums.map((a, i) => 
+          <div className="cf mb3">
+            <img className="fl mr3 shadow-4 "width="40" height="40" src={a.image[1]} alt=""/>
+            <div className="mt3">
+              <div className="fl f6 mr2 pointer gray dim" onClick={this.upvoteAlbum.bind(null, a._id)}>up</div>
+              <div className="fl mr2 bold green">{a.pointsNow}</div>
+              <div className="fl bold mr2">{a.pointsTotal}</div>
+              <div className="fl"><Link className="f5 measure lh-copy mv2" href={"/albums?id=" + a._id}>{a.title}</Link> - <em>{a.artist}</em></div>
+            </div>
           </div>
         )}
       </div>
