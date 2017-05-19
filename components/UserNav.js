@@ -1,4 +1,3 @@
-import { style } from 'glamor'
 import Link from 'next/link'
 import axios from 'axios'
 
@@ -30,18 +29,12 @@ class UserNav extends React.Component {
   		(
   			<div>
           <Link href="/logout"><h3 className="f6 f7 measure-wide fl mr1">Logout</h3></Link> 
-	  			<p className="dib f6" {...styles.user}>{this.state.user && this.state.user.username}</p>
+	  			<p className="dib f6" style={{ color: '#948bff' }}>{this.state.user && this.state.user.username}</p>
   			</div>
   		) : (
   			<Link href="/login"><h3 className="f6 measure-wide fl mr1">Login</h3></Link>
   		)
   }
-}
-
-const styles = {
-  'user': style({
-    color: '#948bff'
-  })
 }
 
 

@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react'
 import Link from 'next/link'
-import { style } from 'glamor'
-import * as  _ from 'lodash'
 import * as R from 'ramda'
 
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 import AlbumSearchInput from '../components/AlbumSearchInput'
+import AlbumsList from '../components/AlbumsList'
 
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
@@ -42,7 +41,7 @@ export default class extends React.Component {
       title: album.name,
       artist: album.artist,
       image: album.image.map(i => i['#text']),
-      mbid: album.mbid
+      mbid: album.mbid || album.id
     })
 
     this.setState({ selectedAlbum: album })
@@ -53,96 +52,25 @@ export default class extends React.Component {
       <div>
         <Head/>
         <div className="h-100">
-          <div {...styles.inner} className="cf mw7 mt5">
+          <div className="cf mw7 tl ma0 center">
             <Nav userToken={ this.props.userToken } />
-            <div className="w-50 fl">
-              <h2 {...styles.title} className="f4 lh-title ttu purple">Albums</h2>
-              <div {...styles.chart}>
-                { <Albums userToken={ this.props.userToken } selected={ this.state.selectedAlbum }/> }
+            <div className="w-80 fl">
+              <h2 className="f4 lh-title ttu purple">Albums</h2>
+              <div>
+                { <AlbumsList userToken={ this.props.userToken } selected={ this.state.selectedAlbum } /> }
                 { <AlbumSearchInput onSelect={ this.onAlbumSelect} /> }
-                <Link href="/create/list" ><div className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black">+ add list</div></Link>
               </div>
             </div>
-            <div className="w-50 fl">
-              <h2 {...styles.title} className="f4 lh-title ttu">users</h2>
-              <div {...styles.chart}>
-              <Users />
+            <div className="w-20 fl">
+              <h2 className="f4 lh-title ttu">users</h2>
+              <div>
+                <Users />
               </div>
             </div>
           </div>
         </div>
       </div>
     );
-  }
-}
-
-
-// Top Albums
-
-class Albums extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { err: 'loading albums...', albums: [] }
-
-    this.fetchAlbums = this.fetchAlbums.bind(this)
-    this.upvoteAlbum = this.upvoteAlbum.bind(this)
-  }
-
-  async componentDidMount() {
-    this.fetchAlbums()
-
-    setInterval(this.fetchAlbums, 5*1000)
-  }
-
-  async fetchAlbums() {
-    let api = apiRequest(this.props.userToken)
-    let res = await api.get('/albums?limit=10')
-    let albums = this.sortByPoints(res.data)
-
-    this.setState({ albums, err: null })
-  }
-
-  sortByPoints(list) {
-    return R.reverse(R.sortBy(R.prop('pointsNow'), list))
-  }
-
-  async upvoteAlbum(album) {
-    let api = apiRequest(this.props.userToken)
-    let id
-
-    // get user id
-    await api.get('/users/me')
-          .then(res =>  id = res.data.id)
-          .catch(err => this.setState({ err: errorMessage(err) }))
-
-    // post upvote
-    let albums = await api.post('/points', {
-      _user: id,
-      action: 'upvote',
-      album: album
-    })
-    // refetch albums
-    .then(this.fetchAlbums)
-    .catch(err => this.setState({ err: errorMessage(err) }))
-  }
-
-  render () {
-    return (
-      <div>
-        {this.state.err && <p className="red">{this.state.err}</p>}
-        {this.state.albums.map((a, i) => 
-          <div className="cf mb3">
-            <img className="fl mr3 shadow-4 "width="40" height="40" src={a.image[1]} alt=""/>
-            <div className="mt3">
-              <div className="fl f6 mr2 pointer gray dim" onClick={this.upvoteAlbum.bind(null, a._id)}>up</div>
-              <div className="fl mr2 bold green">{a.pointsNow}</div>
-              <div className="fl bold mr2">{a.pointsTotal}</div>
-              <div className="fl"><Link className="f5 measure lh-copy mv2" href={"/albums?id=" + a._id}>{a.title}</Link> - <em>{a.artist}</em></div>
-            </div>
-          </div>
-        )}
-      </div>
-    )
   }
 }
 
@@ -174,19 +102,3 @@ class Users extends React.Component {
     )
   }
 }
-
-
-const styles = {
-  'inner': style({
-    margin: '0 auto',
-    color: 'rgb(97, 97, 97)'
-  }),
-  'user': style({
-    color: '#948bff'
-  }),
-  'add': style({
-    color: '#137b23',
-    cursor: 'pointer'
-  })
-}
-

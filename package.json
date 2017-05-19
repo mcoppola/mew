@@ -4,12 +4,14 @@
   "private": true,
   "repository": "https://github.com/mcoppola/mew.git",
   "dependencies": {
-    "lodash": "*",
-    "ramda": "*",
-    "next": "^1.2.3",
     "axios": "*",
     "js-cookie": "2.1.3",
-    "jwt-decode": "2.1.0"
+    "jwt-decode": "2.1.0",
+    "lodash": "*",
+    "next": "^2.4.0",
+    "ramda": "*",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
   },
   "engines": {
     "node": "0.10.x"
