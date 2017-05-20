@@ -41,7 +41,8 @@ export default class extends React.Component {
       title: album.name,
       artist: album.artist,
       image: album.image.map(i => i['#text']),
-      mbid: album.mbid || album.id
+      mbid: album.mib,
+      fmUrl: album.url
     })
 
     this.setState({ selectedAlbum: album })
