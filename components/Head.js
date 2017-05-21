@@ -12,7 +12,7 @@ class HtmlHead extends React.Component {
     return(
         <Head>
           <title>{ this.state.title }</title>
-          <link rel="stylesheet" href="/static/tachyons.min.css"/>
+          <link rel="stylesheet" href="/static/css/style.css"/>
         </Head>
       )
   }

@@ -56,14 +56,14 @@ export default class extends React.Component {
           <div className="cf mw7 tl ma0 center">
             <Nav userToken={ this.props.userToken } />
             <div className="w-80 fl">
-              <h2 className="f4 lh-title ttu purple">Albums</h2>
+              <h2 className="f4 mb4">Albums</h2>
               <div>
                 { <AlbumsList userToken={ this.props.userToken } selected={ this.state.selectedAlbum } /> }
                 { <AlbumSearchInput onSelect={ this.onAlbumSelect} /> }
               </div>
             </div>
             <div className="w-20 fl">
-              <h2 className="f4 lh-title ttu">users</h2>
+              <h2 className="f4 mb4">Users</h2>
               <div>
                 <Users />
               </div>

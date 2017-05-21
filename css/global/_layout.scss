@@ -1,0 +1,13 @@
+$inner:     940px;
+
+.mw-inner 
+{
+  position: relative;
+  margin: 0 auto;
+  max-width: $inner;
+  
+  @media (max-width: $inner)
+  {
+    padding: 0 0.75rem;
+  }
+}

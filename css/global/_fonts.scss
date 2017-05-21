@@ -1,0 +1,140 @@
+// SIZES
+$root-font-unit: 16;
+$root-font-size: $root-font-unit * 1px;
+
+// Type Scale - Augmented Fourth
+// http://type-scale.com/?size=16&scale=1.414
+$text-micro:    0.354rem;
+$text-tiny:     0.707rem;
+$text-small:    1rem;
+$text-default:  1.414rem;
+$text-medium:   1.999rem;
+$text-large:    2.827rem;
+$text-larger:   3.998rem;
+$text-huge:     5rem;
+
+/* Neue Haas Grotesk */
+@font-face {
+  font-family: 'Neue Haas';
+  src: url('/static/fonts/Neue-Haas/NeueHaasGroteskLight.ttf');
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 0.035em;
+}
+@font-face {
+  font-family: 'Neue Haas';
+  src: url('/static/fonts/Neue-Haas/NeueHaasGroteskRegular.ttf');
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: 0.035em;
+}
+@font-face {
+  font-family: 'Neue Haas';
+  src: url('/static/fonts/Neue-Haas/NHaasGroteskTXPro-65Md.ttf');
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.035em;
+}
+@font-face {
+  font-family: 'Neue Haas';
+  src: url('/static/fonts/Neue-Haas/NHaasGroteskTXPro-75Bd.ttf');
+  font-weight: bold;
+  font-style: normal;
+  letter-spacing: 0.035em;
+}
+
+
+// Defaults
+body, html
+{
+  font-family: 'Neue Haas', sans-serif;
+  
+  font-size: $root-font-size;
+  font-weight: normal;
+  line-height: 1.3;
+  
+  @media (max-width: $compact) {
+    font-size: 14px;
+  }
+}
+
+h1,h2,h3,h4,h5,h6
+{
+  font-family: 'Neue Haas', sans-serif;
+	font-weight: 700;
+  color: $dark;
+}
+h1
+{
+  font-size: $text-huge;
+}
+h2
+{
+  font-size: $text-huge;
+}
+h3
+{
+  font-size: $text-larger;
+  line-height: 1.078;
+}
+h4
+{
+  font-size: $text-large;
+}
+h5
+{
+  font-size: $text-medium;
+  font-weight: normal;
+}
+h6
+{
+  font-size: $text-default;
+  font-weight: normal;
+}
+p
+{
+  font-family: 'Neue Haas', sans-serif;
+  font-size: $text-small;
+  line-height: 1.5em;
+  color: $dark;
+  font-weight: 300;
+  letter-spacing: 0.035em;
+}
+a
+{
+  text-decoration: none;
+  color: $blue;
+  font-weight: bold;
+
+  @include transition(all .15s ease-out);
+}
+
+// Helpers =============================== //
+
+.mw--haas 
+{
+  font-family: 'Neue Haas', sans-serif;
+  font-weight: normal;
+  letter-spacing: normal;
+}
+.mw--bold
+{
+  font-weight: bold;
+}
+.mw--med
+{
+  font-weight: 500;
+}
+.mw--light 
+{
+  font-weight: 300;
+  letter-spacing: 0.035em;
+}
+.mw--caps
+{
+  text-transform: uppercase;
+}
+.mw--underline 
+{
+  text-decoration: underline;
+}

@@ -1,0 +1,39 @@
+$narrow:   30em;
+$compact:  60em;
+
+.hide--narrow 
+{
+  @media (max-width: $narrow) 
+  {
+    display: none;
+  }
+}
+.show--narrow 
+{
+  @media (min-width: $narrow) 
+  {
+    display: none;
+  }
+  @media (max-width: $narrow) 
+  {
+    display: block;
+  }
+}
+.hide--compact 
+{
+  @media (max-width: $compact) 
+  {
+    display: none;
+  }
+}
+.show--compact 
+{
+  @media (min-width: $compact) 
+  {
+    display: none;
+  }
+  @media (max-width: $compact) 
+  {
+    display: block;
+  }
+}

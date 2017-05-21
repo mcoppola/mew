@@ -1,0 +1,32 @@
+// Tacyons CSS extentions
+
+// Added width values:
+// w-66
+// w-70
+// w-90
+
+.w-66 {  width:  66%; }
+.w-70 {  width:  70%; }
+.w-90 {  width:  90%; }
+
+@media (--breakpoint-not-small) {
+  .w-66-ns {  width:  66%; }
+  .w-70-ns {  width:  70%; }
+  .w-90-ns {  width:  90%; }
+}
+@media (--breakpoint-medium) {
+  .w-66-m {  width:  66%; }
+  .w-70-m {  width:  70%; }
+  .w-90-m {  width:  90%; }
+}
+@media (--breakpoint-large) {
+  .w-66-l {  width:  66%; }
+  .w-70-l {  width:  70%; }
+  .w-90-l {  width:  90%; }
+}
+
+
+// Added max-width values:
+// mw45
+
+.mw45  {  max-width: 12rem; }

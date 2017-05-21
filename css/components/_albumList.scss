@@ -1,0 +1,56 @@
+$range: 10;
+
+.mw-album-list__item
+{
+	position: relative;
+	
+	background-color: $white;
+	border-bottom: 1px solid transparent;
+
+	@include transform(translate3d(0, 0%, 0));
+
+
+	&:hover 
+	{
+		border-bottom: 1px solid $gray2;
+	}
+
+	// transform pos
+	@for $i from -$range through $range 
+	{
+		&.delta__#{$i}
+		{
+			@include animation(moveY_#{$i} 1s 1 $easeInOutCirc);
+		}
+	}
+
+	@include transition(border $t1 ease-out);
+}
+
+// move Y animation 
+@for $i from -$range through $range {
+	@-moz-keyframes moveY_#{$i} {
+	  from {
+	  	@include transform(translate3d(0, $i * 100%, 0));
+	  }
+	  to {
+	    @include transform(translate3d(0, 0, 0));
+	  }
+	}
+	@-o-keyframes moveY_#{$i} {
+	  from {
+	  	@include transform(translate3d(0, $i * 100%, 0));
+	  }
+	  to {
+	    @include transform(translate3d(0, 0, 0));
+	  }
+	}
+	@keyframes moveY_#{$i} {
+	  from {
+	  	@include transform(translate3d(0, $i * 100%, 0));
+	  }
+	  to {
+	    @include transform(translate3d(0, 0, 0));
+	  }
+	}
+}

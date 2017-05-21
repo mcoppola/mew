@@ -1,0 +1,37 @@
+// Button press transform
+.mw-press-down 
+{
+  @include transform(translateY(0));
+  @include transition(all $t1 ease-out);
+  
+  &:active 
+  {
+    @include transform(translateY(2px));
+  }
+}
+
+// Rotate
+@-moz-keyframes rotate {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(359deg);
+  }
+}
+@-o-keyframes rotate {
+  from {
+    -o-transform: rotate(0deg);
+  }
+  to {
+    -o-transform: rotate(359deg);
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

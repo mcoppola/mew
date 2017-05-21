@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { style } from 'glamor'
-import Head from 'next/head'
 import axios from 'axios';
 
+import Head from '../components/Head'
 import Nav from '../components/Nav'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../utils/auth'
@@ -33,11 +33,7 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        <Head>
-          <title>Mew</title>
-          <link rel="stylesheet" href="/static/tachyons.min.css"/>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head>
+        <Head/>
         <div {...styles.inner} className="cf mw7 mt5">
           <Nav userToken={ this.props.userToken } />
           {!this.state.showCreateForm && <LoginForm />}
