@@ -75,13 +75,15 @@ export default class AlbumsList extends React.Component {
       <div>
         {this.state.err && <p className="red">{this.state.err}</p>}
         {this.state.albums.map((a, i) => 
-          <div className={"mw-album-list__item cf pv2 pointer delta__" + a.delta} onClick={this.upvoteAlbum.bind(null, a._id)}>
+          <div className={"mw-album-list__item cf pv2 pointer delta__" + a.delta} 
+              onClick={this.upvoteAlbum.bind(null, a._id)}
+              key={a._id}>
             <img className="fl mr3 shadow-4" width="40" height="40" src={a.image[1]} alt=""/>
             <div className="mt2 pt1">
               <div className="fl f6 mr2 pointer gray dim" >up</div>
               <div className="fl mr2 bold green">{a.pointsNow}</div>
               <div className="fl bold mr2">{a.pointsTotal}</div>
-              <div className="fl"><Link className="f5 measure lh-copy mv2" href={"/albums?id=" + a._id}>{a.title}</Link> - <em>{a.artist}</em></div>
+              <div className="fl"><span className="color--blue mw--med">{a.title}</span> - <em>{a.artist}</em></div>
             </div>
           </div>
         )}

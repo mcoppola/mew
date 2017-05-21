@@ -96,7 +96,7 @@ class Users extends React.Component {
         {this.state.err && <p>{this.state.err}</p>}
         {this.state.users.map( u => {
           return (
-              <p className="f5 lh-copy">{u.username}</p>
+              <p className="f5 lh-copy" key={u.id}>{u.username}</p>
             )
         })}
       </div>
