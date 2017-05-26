@@ -8,6 +8,7 @@ import Nav from '../components/Nav'
 
 import { getTokenFromCookie, getTokenFromLocalStorage, setToken } from '../utils/auth'
 import { apiRequest, errorMessage } from '../utils/api'
+import redirect from '../utils/redirect'
 
 
 export default class extends React.Component {
@@ -65,7 +66,7 @@ class LoginForm extends React.Component {
     .then(res => {
       let token = res.data.token
       setToken(token)
-      this.props.url.replaceTo('/')
+      redirect({}, '/')
     })
     .catch( err => {
       this.setState({ err: errorMessage(err) })

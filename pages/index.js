@@ -9,8 +9,7 @@ import AlbumsList from '../components/AlbumsList'
 
 
 import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
-import { apiRequest, errorMessage } from '../utils/api'
-
+import { apiRequest, errorMessage, upvoteAlbum, findOrCreateAlbum } from '../utils/api'
 
 
 export default class extends React.Component {
@@ -29,21 +28,13 @@ export default class extends React.Component {
   }
 
   async onAlbumSelect(album) {
-    let api = apiRequest(this.props.userToken)
-        // get user id
-    let id = await api.get('/users/me')
-          .then(res =>  id = res.data.id)
-          .catch(err => errorMessage(e))
 
-    // post new album
-    api.post('/albums', { 
-      _user: id,
-      title: album.name,
-      artist: album.artist,
-      image: album.image.map(i => i['#text']),
-      mbid: album.mib,
-      fmUrl: album.url
-    })
+    findOrCreateAlbum({ album, userToken: this.props.userToken })
+      .then(upvoteAlbum)
+      .then(res => { 
+        this.AlbumsList.refreshAlbums()
+      })
+      .catch(console.log)
 
     this.setState({ selectedAlbum: album })
   }
@@ -58,7 +49,7 @@ export default class extends React.Component {
             <div className="w-80 fl">
               <h2 className="f4 mb4">Albums</h2>
               <div>
-                { <AlbumsList userToken={ this.props.userToken } selected={ this.state.selectedAlbum } /> }
+                { <AlbumsList userToken={ this.props.userToken } selected={ this.state.selectedAlbum } ref={instance => { this.AlbumsList = instance; }} /> }
                 { <AlbumSearchInput onSelect={ this.onAlbumSelect} /> }
               </div>
             </div>
