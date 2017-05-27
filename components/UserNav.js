@@ -28,11 +28,11 @@ class UserNav extends React.Component {
   	return user ? 
   		(
   			<div>
-          <Link href="/logout"><h3 className="f6 f7 measure-wide fl mr1">Logout</h3></Link> 
-	  			<p className="dib f6" style={{ color: '#948bff' }}>{this.state.user && this.state.user.username}</p>
+          <Link href="/logout"><p className="f6 measure-wide lh-solid v-top fl mr1 pointer dim b">Logout</p></Link> 
+	  			<p className="dib f6 lh-solid v-top" style={{ color: '#948bff' }}>{this.state.user && this.state.user.username}</p>
   			</div>
   		) : (
-  			<Link href="/login"><h3 className="f6 measure-wide fl mr1">Login</h3></Link>
+  			<Link href="/login"><p className="f6 measure-wide fl mr1 pointer dim b">Login</p></Link>
   		)
   }
 }

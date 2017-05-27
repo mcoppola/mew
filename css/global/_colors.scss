@@ -2,6 +2,7 @@
 
 $blue:              #302ac9;
 $green-light:       #d1ffe5;
+$black: 			#000000;
 $dark: 				#4D4D4D;
 $gray3: 			#bcbfbf;
 $gray2: 			#e2e6e9;
@@ -12,3 +13,9 @@ $white:				#ffffff;
 .bg--blue               { background-color: $blue;           }
 
 .color--blue            { color: $blue;                      }
+.color--green-light     { color: $green-light;               }
+.color--dark            { color: $dark;                      }
+.color--black           { color: $black;                     }
+.color--gray3           { color: $gray3;                     }
+.color--gray2           { color: $gray2;                     }
+.color--white           { color: $white;                     }

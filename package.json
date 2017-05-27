@@ -25,6 +25,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "next"
+    "start": "next",
+    "dev": "gulp dev | npm start"
   }
 }

@@ -49,8 +49,18 @@ export default class extends React.Component {
             <div className="w-80 fl">
               <h2 className="f4 mb4">Albums</h2>
               <div>
-                { <AlbumsList userToken={ this.props.userToken } selected={ this.state.selectedAlbum } ref={instance => { this.AlbumsList = instance; }} /> }
-                { <AlbumSearchInput onSelect={ this.onAlbumSelect} /> }
+                <div>
+                { <AlbumsList 
+                    userToken={ this.props.userToken } 
+                    selected={ this.state.selectedAlbum } 
+                    ref={instance => { this.AlbumsList = instance; }} /> 
+                  }
+                </div>
+                <div className="mt4">
+                { <AlbumSearchInput 
+                    onSelect={ this.onAlbumSelect} /> 
+                  }
+                </div>  
               </div>
             </div>
             <div className="w-20 fl">

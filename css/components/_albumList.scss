@@ -3,16 +3,20 @@ $range: 10;
 .mw-album-list__item
 {
 	position: relative;
-	
-	background-color: $white;
+	padding: 0.75rem 0;
+	background-color: transparent;
 	border-bottom: 1px solid transparent;
 
 	@include transform(translate3d(0, 0%, 0));
 
-
-	&:hover 
+	img 
 	{
-		border-bottom: 1px solid $gray2;
+    	box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.2);
+	}
+
+	&:hover
+	{
+
 	}
 
 	// transform pos
@@ -20,11 +24,11 @@ $range: 10;
 	{
 		&.delta__#{$i}
 		{
-			@include animation(moveY_#{$i} 1s 1 $easeInOutCirc);
+			@include animation(moveY_#{$i} 1s 1 $easeInOutCirc, green_#{$i} 1s 1 $easeInOutCirc);
 		}
 	}
 
-	@include transition(border $t1 ease-out);
+	@include transition(background-color $t2 ease-out)
 }
 
 // move Y animation 
@@ -54,3 +58,59 @@ $range: 10;
 	  }
 	}
 }
+
+// COLOR positive
+@for $i from 1 through $range {
+	@-moz-keyframes green_#{$i} {
+	  from {
+	  	background-color: rgba($green-light, 0.1);
+	  }
+	  to {
+	    background-color: transparent;
+	  }
+	}
+	@-o-keyframes green_#{$i} {
+	  from {
+	  	background-color: rgba($green-light, 0.1);
+	  }
+	  to {
+	    background-color: transparent;
+	  }
+	}
+	@keyframes green_#{$i} {
+	  from {
+	  	background-color: rgba($green-light, 0.1);
+	  }
+	  to {
+	    background-color: transparent;
+	  }
+	}
+}
+
+// COLOR negative
+// @for $i from -$range through -1 {
+// 	@-moz-keyframes green_#{$i} {
+// 	  from {
+// 	  	background-color: rgba($gray2, 0.1);
+// 	  }
+// 	  to {
+// 	    background-color: transparent;
+// 	  }
+// 	}
+// 	@-o-keyframes green_#{$i} {
+// 	  from {
+// 	  	background-color: rgba($gray2, 0.1);
+// 	  }
+// 	  to {
+// 	    background-color: transparent;
+// 	  }
+// 	}
+// 	@keyframes green_#{$i} {
+// 	  from {
+// 	  	background-color: rgba($gray2, 0.1);
+// 	  }
+// 	  to {
+// 	    background-color: transparent;
+// 	  }
+// 	}
+// }

@@ -9,26 +9,27 @@ import { searchAlbums } from '../utils/lastfm'
 export default class AlbumsList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { err: 'loading albums...', albums: [] }
+    this.state = { err: 'loading albums...', albums: [], refreshing: false }
 
     this.refreshAlbums = this.refreshAlbums.bind(this)
     this.onItemClick = this.onItemClick.bind(this)
   }
 
   async componentDidMount() {
+    this.api = apiRequest(this.props.userToken)
     this.refreshAlbums()
 
-    setInterval(this.refreshAlbums, 2*1000)
+    // setInterval(this.refreshAlbums, 2*1000)
   }
 
   async refreshAlbums() {
+    console.log('refreshAlbums() this.state.refreshing:', this.state.refreshing);
     if (this.state.refreshing) return
     this.setState({ refreshing: true })
 
     let oldPos = this.state.albums.map((a, i) => { return { id: a._id, pos: i }})
     // fetch albums
-    let api = apiRequest(this.props.userToken)
-    let res = await api.get(this.props.query || '/albums?limit=10')
+    let res = await this.api.get(this.props.query || '/albums?limit=10')
     let albums = this.calcDeltas(oldPos, this.sortByPoints(res.data))
 
     this.setState({ albums, err: null })
@@ -50,6 +51,7 @@ export default class AlbumsList extends React.Component {
   }
 
   async onItemClick(album) {
+    console.log('onItemClick() this.state.refreshing:', this.state.refreshing);
     if (this.state.refreshing) return
 
     upvoteAlbum({ album, userToken: this.props.userToken })
@@ -63,15 +65,13 @@ export default class AlbumsList extends React.Component {
       <div>
         {this.state.err && <p className="red">{this.state.err}</p>}
         {this.state.albums.map((a, i) => 
-          <div className={"mw-album-list__item cf pv2 pointer delta__" + a.delta} 
-              onClick={this.onItemClick.bind(null, a._id)}
-              key={a._id}>
-            <img className="fl mr3 shadow-4" width="40" height="40" src={"" || a.image[1]} alt=""/>
+          <div className={"mw-album-list__item cf delta__" + a.delta} key={a._id}>
+            <img className="fl mr3" width="40" height="40" src={"" || a.image[1]} alt=""/>
             <div className="mt2 pt1">
-              <div className="fl f6 mr2 pointer gray dim" >up</div>
-              <div className="fl mr2 bold green">{a.pointsNow}</div>
-              <div className="fl bold mr2">{a.pointsTotal}</div>
-              <div className="fl"><span className="color--blue mw--med">{a.title}</span> - <em>{a.artist}</em></div>
+              <div className="fl mr2 pointer gray dim" onClick={this.onItemClick.bind(null, a._id)} >up</div>
+              <div className="fl mr2 mw--med green">{a.pointsNow}</div>
+              <div className="fl color--dark mr2">{a.pointsTotal}</div>
+              <div className="fl mw--small "><span className="mw--med color--blak">{a.title}</span> - <span className="color--dark">{a.artist}</span></div>
             </div>
           </div>
         )}
