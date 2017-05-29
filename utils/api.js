@@ -113,3 +113,7 @@ function translateErrorCode(msg) {
 	return msg
 }
 
+
+export const paramsFromObj = (data) =>
+ 	Object.keys(data).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&');
+

@@ -12,7 +12,8 @@
     "ramda": "*",
     "ramda-fantasy": "*",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "spotify-web-api-node": "^2.4.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
