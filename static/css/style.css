@@ -5221,132 +5221,180 @@ a {
   transition: background-color 0.25s ease-out; }
   .mw-album-list__item img {
     box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.2); }
+  .mw-album-list__item__up {
+    width: 40px;
+    height: 40px;
+    line-height: 33px;
+    text-align: center;
+    color: #4D4D4D;
+    font-size: 14px;
+    background: transparent;
+    border-radius: 100%;
+    border: 1px solid #ffffff;
+    box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.08);
+    -moz-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    -moz-transition: all 2s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+    -o-transition: all 2s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+    -webkit-transition: all 2s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+    transition: all 2s cubic-bezier(0.13, 0.63, 0.34, 1.58); }
+    .mw-album-list__item__up:hover {
+      background: #fdfdfd;
+      box-shadow: 0px 2px 6px rgba(33, 33, 33, 0.1);
+      -moz-transform: translateY(-4px);
+      -o-transform: translateY(-4px);
+      -ms-transform: translateY(-4px);
+      -webkit-transform: translateY(-4px);
+      transform: translateY(-4px);
+      -moz-transition: all 0.1s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      -o-transition: all 0.1s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      -webkit-transition: all 0.1s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      transition: all 0.1s cubic-bezier(0.13, 0.63, 0.34, 1.58); }
+    .mw-album-list__item__up:active {
+      box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.1);
+      -moz-transform: translateY(5px);
+      -o-transform: translateY(5px);
+      -ms-transform: translateY(5px);
+      -webkit-transform: translateY(5px);
+      transform: translateY(5px);
+      -moz-transition: all 0.15s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      -o-transition: all 0.15s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      -webkit-transition: all 0.15s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      transition: all 0.15s cubic-bezier(0.13, 0.63, 0.34, 1.58); }
+    .mw-album-list__item__up:not(:active), .mw-album-list__item__up:hover:not(:active) {
+      -moz-transition: all 0.5s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      -o-transition: all 0.5s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      -webkit-transition: all 0.5s cubic-bezier(0.13, 0.63, 0.34, 1.58);
+      transition: all 0.5s cubic-bezier(0.13, 0.63, 0.34, 1.58); }
   .mw-album-list__item.delta__-10 {
-    -webkit-animation: moveY_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-9 {
-    -webkit-animation: moveY_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-8 {
-    -webkit-animation: moveY_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-7 {
-    -webkit-animation: moveY_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-6 {
-    -webkit-animation: moveY_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-5 {
-    -webkit-animation: moveY_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-4 {
-    -webkit-animation: moveY_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-3 {
-    -webkit-animation: moveY_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-2 {
-    -webkit-animation: moveY_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__-1 {
-    -webkit-animation: moveY_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__0 {
-    -webkit-animation: moveY_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_0 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__1 {
-    -webkit-animation: moveY_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_1 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__2 {
-    -webkit-animation: moveY_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_2 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__3 {
-    -webkit-animation: moveY_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_3 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__4 {
-    -webkit-animation: moveY_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_4 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__5 {
-    -webkit-animation: moveY_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_5 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__6 {
-    -webkit-animation: moveY_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_6 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__7 {
-    -webkit-animation: moveY_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_7 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__8 {
-    -webkit-animation: moveY_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_8 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__9 {
-    -webkit-animation: moveY_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_9 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
   .mw-album-list__item.delta__10 {
-    -webkit-animation: moveY_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -moz-animation: moveY_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -ms-animation: moveY_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    -o-animation: moveY_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    animation: moveY_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 1s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
+    -webkit-animation: moveY_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -moz-animation: moveY_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -ms-animation: moveY_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-animation: moveY_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    animation: moveY_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86); }
 
 @-moz-keyframes moveY_-10 {
   from {
@@ -6409,3 +6457,51 @@ a {
     background-color: rgba(209, 255, 229, 0.1); }
   to {
     background-color: transparent; } }
+
+@-moz-keyframes down {
+  from {
+    box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.08);
+    -moz-transform: translateY(-3px);
+    -o-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px); }
+  to {
+    box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.1);
+    -moz-transform: translateY(3px);
+    -o-transform: translateY(3px);
+    -ms-transform: translateY(3px);
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px); } }
+
+@-o-keyframes down {
+  from {
+    box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.08);
+    -moz-transform: translateY(-3px);
+    -o-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px); }
+  to {
+    box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.1);
+    -moz-transform: translateY(3px);
+    -o-transform: translateY(3px);
+    -ms-transform: translateY(3px);
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px); } }
+
+@keyframes down {
+  from {
+    box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.08);
+    -moz-transform: translateY(-3px);
+    -o-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px); }
+  to {
+    box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.1);
+    -moz-transform: translateY(3px);
+    -o-transform: translateY(3px);
+    -ms-transform: translateY(3px);
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px); } }

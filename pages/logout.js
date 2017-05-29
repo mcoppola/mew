@@ -8,6 +8,9 @@ import redirect from '../utils/redirect'
 export default class extends React.Component {
   static async getInitialProps (ctx) {
     unsetToken()
+    redirect(ctx, '/')
+
+    return { }
   }
   render() {
   	return(

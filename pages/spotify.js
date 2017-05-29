@@ -6,8 +6,8 @@ import SpotifyWebApi from 'spotify-web-api-node'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 
-import { getTokenFromCookie, getTokenFromLocalStorage, getToken } from '../utils/auth'
-import { apiRequest, errorMessage, upvoteAlbum, findOrCreateAlbum, paramsFromObj } from '../utils/api'
+import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth'
+import { apiRequest, errorMessage, upvoteAlbum, findOrCreateAlbum, userFromToken } from '../utils/api'
 
 
 
@@ -24,68 +24,60 @@ export default class extends React.Component {
     super(props)
 
     this.authSpotify = this.authSpotify.bind(this)
-    this.apiCodeGrant = this.apiCodeGrant.bind(this)
+    this.userSpotifyAccess = this.userSpotifyAccess.bind(this)
     this.topTracks = this.topTracks.bind(this)
-    this.state = { selectedAlbum: null } 
+
+    this.state = { userSpotifyAccess: false, topTracks: [] }
   }
 
   componentDidMount() {
   	this.spotifyApi = new SpotifyWebApi({
   	  clientId : '24ff5979c65f4eff8b7ece06329d8afc',
       clientSecret: 'b20a6499e02642e6b2449827da0288d1',
-  	  redirectUri : 'http://localhost:3000/spotify'  
+  	  redirectUri : 'http://localhost:3000/spotify-callback'  
   	})
 
-    if (this.props.query.code) {
-      // ap[ly for code grant through api proxy
-      this.apiCodeGrant(this.props.query.code)
-    }
 
+    this.userSpotifyAccess()
   }
 
-  apiCodeGrant(code) {
-    let api = apiRequest(this.props.userToken)
+  async userSpotifyAccess() {
+    // first check if we have it
+    let user = (await userFromToken(this.props.userToken)).data
 
-    api.get('/auth/spotify', {
-      params: {
-        code: code
-      }
-    })
-    .then( res => {
+    console.log('user', user)
 
-      // Set the access token on the API object to use it in later calls
-      this.spotifyApi.setAccessToken(res.data['access_token'])
-      this.spotifyApi.setRefreshToken(res.data['refresh_token'])
+    if (user.spotifyAccess) {
 
-      // Save tokens to user in db
-      api.put('/users/me', {
-        spotifyAccess: res.data['access_token'],
-        spotifyRefresh: res.data['refresh_token']
-      })
+      this.spotifyApi.setAccessToken(user.spotifyAccess)
+      this.spotifyApi.setRefreshToken(user.spotifyRefresh)
 
-    }, err => console.log )
+      this.topTracks()
+    } 
 
-    this.topTracks()
-
+    this.setState({ userSpotifyAccess: user.spotifyAccess ? true : false })
   }
+
 
   topTracks() {
     this.spotifyApi.getMyTopTracks({ 
-          time_range: 'short_term'
-        })
-        .then(function(data) {
-          console.log('Top Tracks:', data.body);
-        }, err => console.log )
+        time_range: 'short_term',
+        limit: 10
+      })
+      .then( data => {
+        console.log('Top Tracks:', data.body)
+
+        this.setState({ topTracks: data.body.items })
+
+      }, err => console.log )
   }
 
   async authSpotify() {
-
     let scopes = ['user-read-private', 'user-read-email', 'user-top-read'],
         state = 'foo';
 
     // Create the authorization URL
     let authorizeURL = this.spotifyApi.createAuthorizeURL(scopes, state)
-
     window.location = authorizeURL
   }
 
@@ -97,20 +89,26 @@ export default class extends React.Component {
           <div className="cf mw7 tl ma0 center">
             <Nav userToken={ this.props.userToken } />
             <div className="cf">
-            { this.props.query.code ? 
               <div>
-                <p className="pointer dim color--green"
-                >Connected to Spotify</p>
-                <p className="pointer dim"
-                onClick={this.topTracks}
-                >Top Tracks</p>
+                { this.state.userSpotifyAccess ? 
+                   <p className="dib mr1 color--green">Connected to Spotify</p>
+                   :
+                   <p className="dib mr1 pointer dim" onClick={this.authSpotify}>Authroize Spotify</p>
+                }
+                <p className="dib pointer dim" onClick={this.topTracks}>Refresh Top Tracks</p>
+
+                <div className="mt3">
+                  <h6 className="mw--med mb3 f5">My Top Albums on Spotify</h6>
+                  { this.state.topTracks.map( t => 
+                    <div className="mw-album-list__item cf" key={t.album.id}>
+                      <img className="fl mr3" width="36" height="36" src={t.album.images[1].url} alt=""/>
+                      <div className="mt1 pt1">
+                        <div className="fl mw--small "><span className="mw--med color--blak">{t.album.name}</span> - <span className="color--dark">{t.artists[0].name}</span></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              : 
-              <p className="pointer dim"
-              onClick={this.authSpotify}
-              >Authroize Spotify</p>
-            }
-            	
             </div>
            </div>
       	</div>

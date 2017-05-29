@@ -64,9 +64,9 @@ export default class AlbumsList extends React.Component {
         {this.state.err && <p className="red">{this.state.err}</p>}
         {this.state.albums.map((a, i) => 
           <div className={"mw-album-list__item cf delta__" + a.delta} key={a._id}>
+            <div className="mw-album-list__item__up fl mr2 pointer color--gray-3" onClick={this.onItemClick.bind(null, a._id)} >up</div>
             <img className="fl mr3" width="36" height="36" src={"" || a.image[1]} alt=""/>
             <div className="mt1 pt1">
-              <div className="fl mr2 pointer gray dim" onClick={this.onItemClick.bind(null, a._id)} >up</div>
               <div className="fl mr2 mw--med green">{a.pointsNow}</div>
               <div className="fl color--dark mr2">{a.pointsTotal}</div>
               <div className="fl mw--small "><span className="mw--med color--blak">{a.title}</span> - <span className="color--dark">{a.artist}</span></div>

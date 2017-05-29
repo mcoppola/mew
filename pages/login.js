@@ -78,9 +78,9 @@ class LoginForm extends React.Component {
       <div>
         <form onSubmit={this.handleLoginSubmit} action="http://localhost:4567/auth/login" method="POST">
           <div className="measure w-40">
-            <label for="username" className="f6 b db mb2">Username</label>
+            <label htmlFor="username" className="f6 b db mb2">Username</label>
             <input className="db input-reset f6 ba b--black-20 pa2 mb2 db w-100" ref="username" type="text"/>
-            <label for="username" className="f6 b db mb2">Password</label>
+            <label htmlFor="username" className="f6 b db mb2">Password</label>
             <input className="db input-reset f6 ba b--black-20 pa2 mb2 db w-100" ref="password" type="password"/>
             <input className="f6 link dim ba ph3 pv2 mt2 mb2 dib near-black pointer" type="submit" value="Login"/>
           </div>
@@ -134,7 +134,7 @@ class CreateAccountForm extends React.Component {
           <input className="input-reset f6 db ba b--black-20 pa2 mb2 db w-100" type="text" ref="username"/>
           <label for="username" className="f6 b db mb2">Password</label>
           <input className="input-reset f6 db ba b--black-20 pa2 mb2 db w-100" type="password" ref="password"/>
-          <small id="password-desc" class="f6 lh-copy black-60 db mb2">
+          <small id="password-desc" className="f6 lh-copy black-60 db mb2">
               Must be 6 characters long and contain a number.
             </small>
           <input className="db f6 link dim ba ph3 pv2 mt2 mb2 near-black pointer" type="submit"/>
