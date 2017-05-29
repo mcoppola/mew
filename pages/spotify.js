@@ -25,12 +25,14 @@ export default class extends React.Component {
 
     this.authSpotify = this.authSpotify.bind(this)
     this.apiCodeGrant = this.apiCodeGrant.bind(this)
+    this.topTracks = this.topTracks.bind(this)
     this.state = { selectedAlbum: null } 
   }
 
   componentDidMount() {
   	this.spotifyApi = new SpotifyWebApi({
   	  clientId : '24ff5979c65f4eff8b7ece06329d8afc',
+      clientSecret: 'b20a6499e02642e6b2449827da0288d1',
   	  redirectUri : 'http://localhost:3000/spotify'  
   	})
 
@@ -61,19 +63,24 @@ export default class extends React.Component {
         spotifyRefresh: res.data['refresh_token']
       })
 
-      this.spotifyApi.getMyTopTracks()
+    }, err => console.log )
+
+    this.topTracks()
+
+  }
+
+  topTracks() {
+    this.spotifyApi.getMyTopTracks({ 
+          time_range: 'short_term'
+        })
         .then(function(data) {
           console.log('Top Tracks:', data.body);
-        }, function(err) {
-          console.log('Something went wrong!', err);
-        });
-
-    }, err => console.log )
+        }, err => console.log )
   }
 
   async authSpotify() {
 
-    let scopes = ['user-read-private', 'user-read-email'],
+    let scopes = ['user-read-private', 'user-read-email', 'user-top-read'],
         state = 'foo';
 
     // Create the authorization URL
@@ -91,8 +98,13 @@ export default class extends React.Component {
             <Nav userToken={ this.props.userToken } />
             <div className="cf">
             { this.props.query.code ? 
-              <p className="pointer dim color--green"
-              >Connected to Spotify</p>
+              <div>
+                <p className="pointer dim color--green"
+                >Connected to Spotify</p>
+                <p className="pointer dim"
+                onClick={this.topTracks}
+                >Top Tracks</p>
+              </div>
               : 
               <p className="pointer dim"
               onClick={this.authSpotify}
