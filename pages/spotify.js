@@ -45,13 +45,9 @@ export default class extends React.Component {
     // first check if we have it
     let user = (await userFromToken(this.props.userToken)).data
 
-    console.log('user', user)
-
     if (user.spotifyAccess) {
-
       this.spotifyApi.setAccessToken(user.spotifyAccess)
       this.spotifyApi.setRefreshToken(user.spotifyRefresh)
-
       this.topTracks()
     } 
 
@@ -65,10 +61,7 @@ export default class extends React.Component {
         limit: 10
       })
       .then( data => {
-        console.log('Top Tracks:', data.body)
-
         this.setState({ topTracks: data.body.items })
-
       }, err => console.log )
   }
 
@@ -91,12 +84,14 @@ export default class extends React.Component {
             <div className="cf">
               <div>
                 { this.state.userSpotifyAccess ? 
-                   <p className="dib mr1 color--green">Connected to Spotify</p>
+                   <div>
+                    <p className="dib mr1 color--green">Connected to Spotify</p>
+                    <p className="dib mr1 pointer dim" onClick={this.authSpotify}>Reauthroize Spotify</p>
+                   </div>
                    :
                    <p className="dib mr1 pointer dim" onClick={this.authSpotify}>Authroize Spotify</p>
                 }
                 <p className="dib pointer dim" onClick={this.topTracks}>Refresh Top Tracks</p>
-
                 <div className="mt3">
                   <h6 className="mw--med mb3 f5">My Top Albums on Spotify</h6>
                   { this.state.topTracks.map( t => 

@@ -19,7 +19,7 @@ export default class AlbumsList extends React.Component {
     this.api = apiRequest(this.props.userToken)
     this.refreshAlbums()
 
-    // setInterval(this.refreshAlbums, 2*1000)
+    setInterval(this.refreshAlbums, 5*1000)
   }
 
   async refreshAlbums() {

@@ -29,35 +29,54 @@ export const findOrCreateAlbum = ({ album, userToken }) => {
 
     userFromToken(userToken)
     .then(user => {
-    	// find album
+    	// frist, try to find album by mbid or fmUrl
 	    api.get('/albums', { params: {
-			format: 'json',
-			q: {
-				mbid: album.mbid && album.mbid.length ? album.mbid : null,
-				fmUrl: album.url && album.url.length ? album.url : null
-			}
-			
-		}}).then(res => {
+				format: 'json',
+				q: {
+					mbid: album.mbid && album.mbid.length ? album.mbid : null,
+					fmUrl: album.url && album.url.length ? album.url : null
+				}
 
-		if (res.data && res.data.length) {
-			return resolve({ album: res.data[0], userToken })
-		} else {
+				}}).then(res => {
 
-			api.post('/albums', { 
-		      _user: user.id,
-		      title: album.name,
-		      artist: album.artist,
-		      image: album.image.map(i => i['#text']),
-		      mbid: album.mbid && album.mbid.length ? album.mbid : null,
-		      fmUrl: album.url && album.url.length ? album.url : null
-		    }).then(res => {
-		   		return resolve({ album: res.data, userToken })
-		    })
-			}
+				if (res.data && res.data.length) {
+					// found, return it
+					return resolve({ album: res.data[0], userToken })
+				} else {
+
+					// Second, try to find album by title, artist
+					api.get('/albums', { params: {
+						format: 'json',
+						q: {
+							title: album.name,
+							artist: album.artist,
+						}
+
+						}}).then(res => {
+
+							if (res.data && res.data.length) {
+								// found, return it
+								return resolve({ album: res.data[0], userToken })
+							} else {
+
+								// Not found, create it
+								api.post('/albums', { 
+							      _user: user.id,
+							      title: album.name,
+							      artist: album.artist,
+							      image: album.image.map(i => i['#text']),
+							      mbid: album.mbid && album.mbid.length ? album.mbid : null,
+							      fmUrl: album.url && album.url.length ? album.url : null
+							    }).then(res => {
+							   		return resolve({ album: res.data, userToken })
+							    })
+								}
+							})
 		   
+					}
+				})
+			})
 		})
-	})
-  })
 }
 
 export const upvoteAlbum = ({ album, userToken }) => {

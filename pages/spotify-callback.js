@@ -46,7 +46,7 @@ export default class extends React.Component {
   apiCodeGrant(code) {
     let api = apiRequest(this.props.userToken)
 
-    api.get('/auth/spotify', {
+    api.get('/spotify/login', {
       params: {
         code: code
       }
