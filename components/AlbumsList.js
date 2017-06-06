@@ -9,6 +9,7 @@ import { searchAlbums } from '../utils/lastfm'
 export default class AlbumsList extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = { err: 'loading albums...', albums: [], refreshing: false }
 
     this.refreshAlbums = this.refreshAlbums.bind(this)
@@ -19,7 +20,7 @@ export default class AlbumsList extends React.Component {
     this.api = apiRequest(this.props.userToken)
     this.refreshAlbums()
 
-    setInterval(this.refreshAlbums, 5*1000)
+    // setInterval(this.refreshAlbums, 5*1000)
   }
 
   async refreshAlbums() {
