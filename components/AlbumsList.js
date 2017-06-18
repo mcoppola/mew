@@ -59,6 +59,11 @@ export default class AlbumsList extends React.Component {
       .catch(err => this.setState({ err: errorMessage(err) }))
   }
 
+  formatTitle(t) {
+    let max = 30
+    return t.length > max ? t.substring(0, max) + '... ' : t
+  }
+
   render () {
     return (
       <div>
@@ -70,7 +75,8 @@ export default class AlbumsList extends React.Component {
             <div className="mt1 pt1">
               <div className="fl mr2 mw--med green">{a.pointsNow}</div>
               <div className="fl color--dark mr2">{a.pointsTotal}</div>
-              <div className="fl mw--small "><span className="mw--med color--blak">{a.title}</span> - <span className="color--dark">{a.artist}</span></div>
+              <div className="fl mw--small ">
+                <span className="mw--med color--blak">{this.formatTitle(a.title)}</span> - <span className="color--dark">{a.artist}</span></div>
             </div>
           </div>
         )}

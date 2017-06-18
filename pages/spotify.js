@@ -24,7 +24,6 @@ export default class extends React.Component {
     super(props)
 
     this.api = apiRequest(this.props.userToken)
-
     this.authSpotify = this.authSpotify.bind(this)
     this.userSpotifyAccess = this.userSpotifyAccess.bind(this)
     this.getTopTracks = this.getTopTracks.bind(this)
@@ -36,7 +35,7 @@ export default class extends React.Component {
   componentDidMount() {
   	this.spotifyApi = new SpotifyWebApi({
   	  clientId : '24ff5979c65f4eff8b7ece06329d8afc',
-      clientSecret: 'b20a6499e02642e6b2449827da0288d1',
+      // clientSecret: 'b20a6499e02642e6b2449827da0288d1',
   	  redirectUri : 'http://localhost:3000/spotify-callback'  
   	})
 
@@ -49,8 +48,13 @@ export default class extends React.Component {
     let user = (await userFromToken(this.props.userToken)).data
 
     if (user.spotifyAccess) {
-      this.spotifyApi.setAccessToken(user.spotifyAccess)
-      this.spotifyApi.setRefreshToken(user.spotifyRefresh)
+      
+      // reauthorize
+      let res = await this.api.get('/spotify/reauthorize')
+
+      let access = res.data.access_token
+
+      this.spotifyApi.setAccessToken(access)
       this.getTopTracks()
     } 
 
@@ -69,11 +73,9 @@ export default class extends React.Component {
   }
 
   addTopTracks() {
-
     this.api.post('/spotify/add-top-tracks')
     .then(res => console.log(res))
     .catch(err => console.log(err))
-
   }
 
   async authSpotify() {
@@ -97,16 +99,13 @@ export default class extends React.Component {
                 { this.state.userSpotifyAccess ? 
                    <div className="dib">
                     <p className="db mr2 color--green">Connected to Spotify</p>
-                    <p className="dib mr2 pointer dim " onClick={this.authSpotify}>Reauthroize Spotify</p>
                    </div>
                    :
                    <p className="dib mr2 pointer dim" onClick={this.authSpotify}>Authroize Spotify</p>
                 }
-                <p className="dib pointer dim mr2" onClick={this.topTracks}>Refresh Top Tracks</p>
                 { this.state.topTracks.length &&
                   <p className="dib pointer dim" onClick={this.addTopTracks}>Add Top Tracks</p>
-                 }
-                
+                }
                 <div className="mt3">
                   <h6 className="mw--med mb3 f5">My Top Albums on Spotify</h6>
                   { this.state.topTracks.map( t => 
@@ -118,7 +117,6 @@ export default class extends React.Component {
                     </div>
                   )}
                 </div>
-
               </div>
             </div>
            </div>
