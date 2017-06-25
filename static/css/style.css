@@ -10,6 +10,9 @@
 .color--green {
   color: #169106; }
 
+.color--purple {
+  color: #948bff; }
+
 .color--dark {
   color: #4D4D4D; }
 
@@ -5129,6 +5132,14 @@ img {
   font-style: normal;
   letter-spacing: 0.035em; }
 
+/* Sabon */
+@font-face {
+  font-family: 'Sabon';
+  src: url("/static/fonts/Sabon-Italic/bc89f8d2-4ac8-4c99-aa40-a31cea6d7b5a.ttf");
+  font-weight: normal;
+  font-style: italic;
+  letter-spacing: 0.035em; }
+
 body, html {
   font-family: 'Neue Haas', sans-serif;
   font-size: 16px;
@@ -5186,6 +5197,11 @@ a {
   font-weight: normal;
   letter-spacing: normal; }
 
+.mw--sabon {
+  font-family: 'Sabon', Georgia, serif;
+  font-weight: normal;
+  letter-spacing: normal; }
+
 .mw--bold {
   font-weight: bold; }
 
@@ -5205,6 +5221,12 @@ a {
 .mw--small {
   font-size: 1rem; }
 
+.mw--smaller {
+  font-size: 0.875rem; }
+
+.mw--tiny {
+  font-size: 0.707rem; }
+
 .mw-album-list__item {
   position: relative;
   padding: 0.75rem 0;
@@ -5219,8 +5241,8 @@ a {
   -o-transition: background-color 0.25s ease-out;
   -webkit-transition: background-color 0.25s ease-out;
   transition: background-color 0.25s ease-out; }
-  .mw-album-list__item img {
-    box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.2); }
+  .mw-album-list__item__img {
+    box-shadow: 0px 1px 22px 0 rgba(0, 0, 0, 0.2); }
   .mw-album-list__item__up {
     width: 40px;
     height: 40px;

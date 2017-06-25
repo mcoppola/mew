@@ -6,6 +6,7 @@ $root-font-size: $root-font-unit * 1px;
 // http://type-scale.com/?size=16&scale=1.414
 $text-micro:    0.354rem;
 $text-tiny:     0.707rem;
+$text-smaller:  0.875rem;
 $text-small:    1rem;
 $text-default:  1.414rem;
 $text-medium:   1.999rem;
@@ -42,7 +43,14 @@ $text-huge:     5rem;
   font-style: normal;
   letter-spacing: 0.035em;
 }
-
+/* Sabon */
+@font-face {
+  font-family: 'Sabon';
+  src: url('/static/fonts/Sabon-Italic/bc89f8d2-4ac8-4c99-aa40-a31cea6d7b5a.ttf');
+  font-weight: normal;
+  font-style: italic;
+  letter-spacing: 0.035em;
+}
 
 // Defaults
 body, html
@@ -117,6 +125,12 @@ a
   font-weight: normal;
   letter-spacing: normal;
 }
+.mw--sabon 
+{
+  font-family: 'Sabon', Georgia, serif;
+  font-weight: normal;
+  letter-spacing: normal;
+}
 .mw--bold
 {
   font-weight: bold;
@@ -141,4 +155,12 @@ a
 .mw--small
 {
   font-size: $text-small;
+}
+.mw--smaller
+{
+  font-size: $text-smaller;
+}
+.mw--tiny
+{
+  font-size: $text-tiny;
 }

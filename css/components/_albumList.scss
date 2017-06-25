@@ -9,9 +9,9 @@ $range: 10;
 
 	@include transform(translate3d(0, 0%, 0));
 
-	img 
+	&__img 
 	{
-    	box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.2);
+    	box-shadow: 0px 1px 22px 0 rgba(0, 0, 0, 0.2);
 	}
 
 	&__up

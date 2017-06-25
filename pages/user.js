@@ -28,7 +28,7 @@ export default class extends React.Component {
     this.state = { user: null, points: null, changed: false, formValues: {} }
     this.saveSettings = this.saveSettings.bind(this)
     this.fetchUserData = this.fetchUserData.bind(this)
-    this.updateProfilePicture = this.updateProfilePicture.bind(this)
+    this.updateProfileImage = this.updateProfileImage.bind(this)
   }
 
 
@@ -64,13 +64,13 @@ export default class extends React.Component {
       .catch(e =>  console.log(e))
   }
 
-  updateProfilePicture(e) {
+  updateProfileImage(e) {
     let file = e.target.files[0]
 
     this.fsClient.upload(file)
       .then(res => {
         this.setState({ 
-          formValues: { profilePicture: res.url }, 
+          formValues: { profileImage: res.url }, 
           changed: true 
         })
       })
@@ -88,8 +88,8 @@ export default class extends React.Component {
               { this.state.user &&
                   <div>
                     <div className="fl tc mr1">
-                      <img src={ this.state.formValues.profilePicture ? this.state.formValues.profilePicture : this.state.user.profilePicture }
-                          className="br-100 h2 w2 dib" alt="picture"></img>
+                      <img src={ this.state.formValues.profileImage ? this.state.formValues.profileImage : this.state.user.profileImage }
+                          className="br-100 h2 w2 dib" alt="Image"></img>
                     </div>
                     <h6 className="b" style={{ color: '#948bff' }} >{ this.state.user.username }</h6>
                   </div>
@@ -129,15 +129,15 @@ export default class extends React.Component {
                 <div className="cf mt2">
                   { this.state.user &&
                     <div>
-                      <p className="fl mr1">profile picture</p>
+                      <p className="fl mr1">profile image</p>
                       <div className="fl pa1 tc">
                         <img
-                            src={ this.state.formValues.profilePicture ? this.state.formValues.profilePicture : this.state.user.profilePicture }
-                            className="br-100 h1 w1 dib" alt="picture"></img>
+                            src={ this.state.formValues.profileImage ? this.state.formValues.profileImage : this.state.user.profileImage }
+                            className="br-100 h1 w1 dib" alt="Image"></img>
                       </div>
                       <div className="cf db">
                         <input 
-                          onChange={this.updateProfilePicture} 
+                          onChange={this.updateProfileImage} 
                           className="db" 
                           type="file" />
                       </div>

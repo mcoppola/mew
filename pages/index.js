@@ -47,7 +47,7 @@ export default class extends React.Component {
           <div className="cf mw7 tl ma0 center">
             <Nav userToken={ this.props.userToken } />
             <div className="w-80 fl">
-              <h2 className="f4 mb4">Albums</h2>
+              <h2 className="f4 mb2">Albums</h2>
               <div>
                 <div>
                 { <AlbumsList 
@@ -64,7 +64,7 @@ export default class extends React.Component {
               </div>
             </div>
             <div className="w-20 fl">
-              <h2 className="f4 mb4">Users</h2>
+              <h2 className="f4 mb2">Users</h2>
               <div>
                 <Users />
               </div>
@@ -99,7 +99,7 @@ class Users extends React.Component {
           return (
               <div className="cf">
                 <div className="fl tc mr1">
-                    <img src={u.profilePicture}
+                    <img src={u.profileImage}
                         className="br-100 h1 w1 dib" alt=""></img>
                   </div>
                   <p className="fl f6 lh-solid v-top b" key={u.id}>{u.username}</p>
