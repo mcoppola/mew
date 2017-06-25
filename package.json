@@ -5,6 +5,8 @@
   "repository": "https://github.com/mcoppola/mew.git",
   "dependencies": {
     "axios": "*",
+    "exenv": "^1.2.2",
+    "filestack-js": "^0.6.3",
     "js-cookie": "2.1.3",
     "jwt-decode": "2.1.0",
     "lodash": "*",

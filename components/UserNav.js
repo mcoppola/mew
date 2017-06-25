@@ -7,7 +7,7 @@ import { apiRequest } from '../utils/api'
 class UserNav extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { user: null }
+    this.state = { user: null, points: null }
   }
 
   componentDidMount() {
@@ -19,6 +19,12 @@ class UserNav extends React.Component {
           this.setState({ user: res.data })
         })
         .catch(e => console.log(e))
+
+      api.get('/users/points')
+        .then(res => {
+          this.setState({ points: res.data })
+        })
+        .catch(console.log)
     }
   }
 
@@ -28,8 +34,20 @@ class UserNav extends React.Component {
   	return user ? 
   		(
   			<div>
-          <Link href="/logout"><p className="f6 measure-wide lh-solid v-top fl mr1 pointer dim b">Logout</p></Link> 
-	  			<p className="dib f6 lh-solid v-top" style={{ color: '#948bff' }}>{this.state.user && this.state.user.username}</p>
+	  			<Link href="/user">
+            <div>
+              { this.state.user &&
+                <div className="fl">
+                  <div className="fl tc mr1">
+                    <img src={this.state.user.profilePicture}
+                        className="br-100 h1 w1 dib" alt=""></img>
+                  </div>
+                  <p className="fl f6 lh-solid v-top b mr1 pointer dim" style={{ color: '#948bff' }}>{this.state.user.username}</p>
+                </div>
+              }
+              <p className="fl f6 lh-solid v-top">{ this.state.points && this.state.points.sum }</p>
+            </div>
+          </Link>
   			</div>
   		) : (
   			<Link href="/login"><p className="f6 measure-wide fl mr1 pointer dim b">Login</p></Link>

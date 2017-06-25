@@ -97,7 +97,13 @@ class Users extends React.Component {
         {this.state.err && <p>{this.state.err}</p>}
         {this.state.users.map( u => {
           return (
-              <p className="f5 lh-copy" key={u.id}>{u.username}</p>
+              <div className="cf">
+                <div className="fl tc mr1">
+                    <img src={u.profilePicture}
+                        className="br-100 h1 w1 dib" alt=""></img>
+                  </div>
+                  <p className="fl f6 lh-solid v-top b" key={u.id}>{u.username}</p>
+              </div>
             )
         })}
       </div>

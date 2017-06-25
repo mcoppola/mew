@@ -34,7 +34,7 @@ export default class AlbumsList extends React.Component {
 
     this.setState({ albums, err: null })
     // after UI transition, end refreshing
-    setTimeout(() => { this.setState({ refreshing: false })}, 1000)
+    setTimeout(() => { this.setState({ refreshing: false })}, 817)
   }
 
   sortByPoints (albums) { 

@@ -10,8 +10,6 @@ import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth'
 import { apiRequest, errorMessage, upvoteAlbum, findOrCreateAlbum, userFromToken } from '../utils/api'
 
 
-
-
 export default class extends React.Component {
   static async getInitialProps ({ req, query }) {
     // Auth
@@ -35,7 +33,6 @@ export default class extends React.Component {
   componentDidMount() {
   	this.spotifyApi = new SpotifyWebApi({
   	  clientId : '24ff5979c65f4eff8b7ece06329d8afc',
-      // clientSecret: 'b20a6499e02642e6b2449827da0288d1',
   	  redirectUri : 'http://localhost:3000/spotify-callback'  
   	})
 
