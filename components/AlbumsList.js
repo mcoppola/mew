@@ -10,10 +10,12 @@ export default class AlbumsList extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { err: 'loading albums...', albums: [], refreshing: false }
+    this.state = { err: 'loading albums...', albums: [], refreshing: false, query: null }
 
     this.refreshAlbums = this.refreshAlbums.bind(this)
     this.onItemClick = this.onItemClick.bind(this)
+    this._onUserSelect = this._onUserSelect.bind(this)
+    this.setQuery = this.setQuery.bind(this)
   }
 
   async componentDidMount() {
@@ -29,12 +31,17 @@ export default class AlbumsList extends React.Component {
 
     let oldPos = this.state.albums.map((a, i) => { return { id: a._id, pos: i }})
     // fetch albums
-    let res = await this.api.get(this.props.query || '/albums?limit=10')
+    let res = await this.api.get(this.state.query || '/albums?limit=10')
     let albums = this.calcDeltas(oldPos, this.sortByPoints(res.data))
 
     this.setState({ albums, err: null })
+
     // after UI transition, end refreshing
     setTimeout(() => { this.setState({ refreshing: false })}, 817)
+  }
+
+  setQuery(query, next) {
+    this.setState({ query }, () => this.refreshAlbums())
   }
 
   sortByPoints (albums) { 
@@ -59,6 +66,13 @@ export default class AlbumsList extends React.Component {
       .catch(err => this.setState({ err: errorMessage(err) }))
   }
 
+  _onUserSelect(user) {
+    if (this.state.refreshing) return 
+
+    this.setState({ query: '/albums/user/'+user.id+'?limit=10' }, () => this.refreshAlbums())
+    this.props.onUserSelect(user)
+  }
+
   formatTitle(t) {
     let max = 30
     return t.length > max ? t.substring(0, max) + '... ' : t
@@ -70,11 +84,11 @@ export default class AlbumsList extends React.Component {
         {this.state.err && <p className="red">{this.state.err}</p>}
         {this.state.albums.map((a, i) => 
           <div className={"mw-album-list__item cf delta__" + a.delta} key={a._id}>
-            <div className="mw-album-list__item__up mt1 fl mr2 pointer color--gray-3" onClick={this.onItemClick.bind(null, a._id)} >up</div>
+            <div className="mw-album-list__item__up mt1 fl mr2 pointer color--gray3" onClick={this.onItemClick.bind(null, a._id)} >up</div>
             <div className="fl">
               <div className="mt2 pt1 fl mr3">
-                <div className="fl f6 w1 mr2 green">{a.pointsNow}</div>
-                <div className="fl f6 w1 gray">{a.pointsTotal}</div>
+                <div className="fl f6 w1 mr2 color--green">{a.pointsNow}</div>
+                <div className="fl f6 w1 color--gray1">{a.pointsTotal}</div>
               </div>
             </div>
             <img className="mw-album-list__item__img fl mr3" width="46" height="46" src={"" || a.image[1]} alt=""/>
@@ -87,14 +101,13 @@ export default class AlbumsList extends React.Component {
               <div className="db">
                 <div className="fl pt1">
                   { a.pointsUsers.map(u => 
-                      <div className="fl tc mr1">
+                      <div className="fl tc mr1 dim pointer" onClick={e => this._onUserSelect(u) }>
                         <img src={u.profileImage}className="br-100 h1 w1 dib" alt=""></img>
                       </div>
                     )}
                 </div>
               </div>
             </div>
-            
             
           </div>
         )}

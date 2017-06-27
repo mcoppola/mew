@@ -11,11 +11,11 @@ import { apiRequest, errorMessage, upvoteAlbum, findOrCreateAlbum, userFromToken
 
 
 export default class extends React.Component {
-  static async getInitialProps ({ req, query }) {
+  static async getInitialProps ({ req, query, pathname }) {
     // Auth
     const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(req)
 
-    return { userToken, query }
+    return { userToken, query, path: pathname }
   }
 
   constructor(props) {
@@ -90,7 +90,7 @@ export default class extends React.Component {
         <Head/>
         <div className="h-100">
           <div className="cf mw7 tl ma0 center">
-            <Nav userToken={ this.props.userToken } />
+            <Nav userToken={ this.props.userToken } path={this.props.path} />
             <div className="cf">
               <div>
                 { this.state.userSpotifyAccess ? 

@@ -42,7 +42,7 @@ class UserNav extends React.Component {
                     <img src={this.state.user.profileImage}
                         className="br-100 h1 w1 dib" alt=""></img>
                   </div>
-                  <p className="fl f6 lh-solid v-top b mr1 pointer dim" style={{ color: '#948bff' }}>{this.state.user.username}</p>
+                  <p className="fl f6 lh-solid v-top b mr1 pointer dim color--purple-light">{this.state.user.username}</p>
                 </div>
               }
               <p className="fl f6 lh-solid v-top">{ this.state.points && this.state.points.sum }</p>

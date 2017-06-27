@@ -16,7 +16,7 @@ import { getAlbums } from '../utils/lastfm'
 export default class extends React.Component {
   static getInitialProps (ctx) {
     const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
-    return { userToken, listId: ctx.query.id }
+    return { userToken, listId: ctx.query.id, path: ctx.pathname }
   }
 
   async componentDidMount() {
@@ -38,7 +38,7 @@ export default class extends React.Component {
         </Head>
         <div>
           <div {...styles.inner} className="cf mw7 mt5">
-            <Nav userToken={ this.props.userToken } />
+            <Nav userToken={ this.props.userToken } pathname={ this.props.path } />
             <h2 {...styles.title} className="f4 lh-title ttu">{l && l._user.username} / {l && l.title}</h2>
             <div {...styles.chart}>
             {l && l._albums.map((album, i) => {

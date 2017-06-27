@@ -2,12 +2,15 @@
 
 $blue:              #302ac9;
 $green-light:       #d1ffe5;
-$green:      		#169106;
-$purple:            #948bff;
+$green:      		#38cc80;
+$green-light:       #45FE99;
+$purple-light:      #948bff;
+$purple:			#53354A;
 $black: 			#000000;
-$dark: 				#4D4D4D;
+$dark: 				#4A4A4A;
 $gray3: 			#bcbfbf;
 $gray2: 			#e2e6e9;
+$gray1:             #DED8DC;
 $white:				#ffffff;
 
 
@@ -17,9 +20,12 @@ $white:				#ffffff;
 .color--blue            { color: $blue;                      }
 .color--green-light     { color: $green-light;               }
 .color--green     		{ color: $green;               		 }
+.color--green-light     { color: $green-light;      		 }
 .color--purple          { color: $purple;                    }
+.color--purple-light    { color: $purple-light;              }
 .color--dark            { color: $dark;                      }
 .color--black           { color: $black;                     }
 .color--gray3           { color: $gray3;                     }
 .color--gray2           { color: $gray2;                     }
+.color--gray1           { color: $gray1;                     }
 .color--white           { color: $white;                     }

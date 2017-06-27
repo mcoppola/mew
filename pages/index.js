@@ -17,14 +17,16 @@ export default class extends React.Component {
     // Auth
     const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
 
-    return { userToken }
+    return { userToken, path: ctx.pathname }
   }
 
   constructor(props) {
     super(props)
 
     this.onAlbumSelect = this.onAlbumSelect.bind(this)
-    this.state = { selectedAlbum: null } 
+    this.onUserSelect = this.onUserSelect.bind(this)
+
+    this.state = { selectedAlbum: null, selectedUser: null } 
   }
 
   async onAlbumSelect(album) {
@@ -39,18 +41,34 @@ export default class extends React.Component {
     this.setState({ selectedAlbum: album })
   }
 
+  onUserSelect(user) {
+    this.setState({ selectedUser: user })
+  }
+
+  removeSelectedUser() {
+    this.setState({ selectedUser: null })
+    this.AlbumsList.setQuery(null)
+  }
+
   render() {
     return (
       <div>
         <Head/>
         <div className="h-100">
           <div className="cf mw7 tl ma0 center">
-            <Nav userToken={ this.props.userToken } />
+            <Nav userToken={ this.props.userToken } path={ this.props.path } />
             <div className="w-80 fl">
-              <h2 className="f4 mb2">Albums</h2>
+              <h2 className="f4 mb2 color--purple"><span className="lh-title v-middle">/#NowPlaying</span>
+              { this.state.selectedUser &&  
+                  <div className="dib tc ml1 lh-title v-middle" onClick={e => this.removeSelectedUser() }>
+                    <img src={this.state.selectedUser.profileImage}
+                        className="br-100 h1 w1 dib" alt=""></img>
+                  </div>
+              }</h2>
               <div>
                 <div>
                 { <AlbumsList 
+                    onUserSelect={ this.onUserSelect }
                     userToken={ this.props.userToken } 
                     selected={ this.state.selectedAlbum } 
                     ref={instance => { this.AlbumsList = instance; }} /> 
@@ -64,7 +82,7 @@ export default class extends React.Component {
               </div>
             </div>
             <div className="w-20 fl">
-              <h2 className="f4 mb2">Users</h2>
+              <h2 className="f4 mb2 color--purple">Users</h2>
               <div>
                 <Users />
               </div>
@@ -102,7 +120,7 @@ class Users extends React.Component {
                     <img src={u.profileImage}
                         className="br-100 h1 w1 dib" alt=""></img>
                   </div>
-                  <p className="fl f6 lh-solid v-top b" key={u.id}>{u.username}</p>
+                  <p className="fl f6 lh-solid v-top gray" key={u.id}>{u.username}</p>
               </div>
             )
         })}
