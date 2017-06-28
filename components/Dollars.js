@@ -1,7 +1,6 @@
-
-
 import Link from 'next/link'
 import axios from 'axios'
+import * as R from 'ramda'
 
 import { apiRequest } from '../utils/api'
 
@@ -31,8 +30,8 @@ class Canvas extends React.Component {
 	    ctx.save()
 	    ctx.translate(0, this.fontSize - 2)
 	    ctx.fillStyle = '#38cc80'
-	    ctx.font = this.fontSize + "px Neue Haas"
-	    ctx.fillText('$ '+ this.props.dollars, 0, 0)
+	    ctx.font = this.fontSize + "px monospace"
+	    ctx.fillText('$'+ this.props.dollars, 0, 0)
 	    ctx.restore()
 		}
   }
@@ -75,6 +74,12 @@ class Dollars extends React.Component {
   constructor(props) {
   	super(props)
 
+  	this.duration    = 1000 // in ms
+    this.fps         = 30 // frames per second
+    this.step  			 = 1 / ((this.duration / 1000) * this.fps)
+    this.idx         = 1
+    this.digits      = 5
+
   	this.state = { dollars: null, request: 0 }
   	this.timeouts = []
     this.tick = this.tick.bind(this)
@@ -83,11 +88,6 @@ class Dollars extends React.Component {
   }
 
   componentDidMount() {
-  	this.duration    = 1000 // in ms
-    this.fps         = 30 // frames per second
-    this.step  			 = 1 / ((this.duration / 1000) * this.fps)
-    this.idx         = 1
-
     this.clearTimeouts()
     this.tick()
   }
@@ -118,12 +118,18 @@ class Dollars extends React.Component {
   calc(data) {
   	if (!data || !data.fn) return
   	let earned = new Date().getTime() - data.fn.startDate
-		let dollars = data.fn.startAmount + ((earned - data.fn.spent) / data.fn.growRate)
+		let spent = this.props.actions ? R.sum(this.props.actions.map(R.prop('value'))) : 0
+		let dollars = data.fn.startAmount + ((earned - data.fn.spent) / data.fn.growRate) - spent
 		return this.round(dollars)
   }
 
   round(n) {
-  	return Math.round(n * 100000) / 100000
+  	let val = Math.round(n * Math.pow(10, this.digits)) / Math.pow(10, this.digits)
+  	// add any missing 0s to keep length consistent
+  	if (val.toString().split('.').pop().length < this.digits) {
+  		val += ('0').repeat(this.digits - val.toString().split('.').pop().length)
+  	}
+  	return val
   }
 
   render() {

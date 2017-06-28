@@ -131,6 +131,12 @@ a
   font-weight: normal;
   letter-spacing: normal;
 }
+.mw--mono
+{
+  font-family: monospace;
+  font-weight: normal;
+  letter-spacing: normal;
+}
 .mw--bold
 {
   font-weight: bold;
@@ -151,6 +157,14 @@ a
 .mw--underline 
 {
   text-decoration: underline;
+}
+.font--medium
+{
+  font-size: $text-medium;
+}
+.font--default
+{
+  font-size: $text-default;
 }
 .mw--small
 {

@@ -17,14 +17,14 @@ class Nav extends React.Component {
 
   render() {
     return(
-        <div className="cf mv4">
+        <div className="cf mv3">
           <div className="w-70 fl">
             { links.map( l => 
                 <Link href={l.path} key={l.label + l.path}><h3 className={this.linkStyle(l)} >{l.label}</h3></Link>
             )}
           </div>
           <div className="w-30 fl">
-            <UserNav userToken={ this.props.userToken } spentDollars={this.props.spentDollars} />
+            <UserNav userToken={ this.props.userToken } actions={this.props.actions} />
           </div>
         </div>
       )

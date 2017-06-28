@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Dollars from './Dollars'
 import { apiRequest } from '../utils/api'
+import * as R from 'ramda'
 
 
 class UserNav extends React.Component {
@@ -44,17 +45,21 @@ class UserNav extends React.Component {
 	  			<Link href="/user">
             <div>
               { this.state.user &&
-                <div className="fl">
+                <div className="fl mr2">
                   <div className="fl tc mr1">
                     <img src={this.state.user.profileImage}
                         className="br-100 h1 w1 dib" alt=""></img>
                   </div>
-                  <p className="fl f6 lh-solid v-top b mr1 pointer dim color--purple-light">{this.state.user.username}</p>
+                  <p className="fl f6 lh-solid v-top b pointer dim color--purple-light">{this.state.user.username}</p>
                 </div>
               }
-              <p className="fl f6 lh-solid v-top mr1">{ this.state.points && this.state.points.sum }</p>
-              <div className="fl f6 lh-solid v-top">
-                <Dollars data={ this.state.dollars } />
+              <p className="fl f6 lh-solid v-top mr2 mw--mono">
+                <span className="color--purple">&bull;</span>
+                { this.state.points && 
+                  this.state.points.sum + (this.props.actions ? R.sum(this.props.actions.map(R.prop('value'))) : 0) }
+              </p>
+              <div className="fl f6 lh-solid v-top mw--mono">
+                <Dollars data={ this.state.dollars } actions={ this.props.actions } />
               </div>
             </div>
           </Link>

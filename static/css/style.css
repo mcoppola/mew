@@ -1,6 +1,9 @@
 .bg--blue {
   background-color: #302ac9; }
 
+.bg--white {
+  background-color: #ffffff; }
+
 .color--blue {
   color: #302ac9; }
 
@@ -36,6 +39,9 @@
 
 .color--white {
   color: #ffffff; }
+
+.border-color--purple {
+  border-color: #53354A; }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -5211,6 +5217,11 @@ a {
   font-weight: normal;
   letter-spacing: normal; }
 
+.mw--mono {
+  font-family: monospace;
+  font-weight: normal;
+  letter-spacing: normal; }
+
 .mw--bold {
   font-weight: bold; }
 
@@ -5226,6 +5237,12 @@ a {
 
 .mw--underline {
   text-decoration: underline; }
+
+.font--medium {
+  font-size: 1.999rem; }
+
+.font--default {
+  font-size: 1.414rem; }
 
 .mw--small {
   font-size: 1rem; }

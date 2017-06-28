@@ -16,6 +16,7 @@ $white:				#ffffff;
 
 // Helper Classes
 .bg--blue               { background-color: $blue;           }
+.bg--white              { background-color: $white;          }
 
 .color--blue            { color: $blue;                      }
 .color--green-light     { color: $green-light;               }
@@ -29,3 +30,7 @@ $white:				#ffffff;
 .color--gray2           { color: $gray2;                     }
 .color--gray1           { color: $gray1;                     }
 .color--white           { color: $white;                     }
+
+
+
+.border-color--purple   { border-color: $purple;             }

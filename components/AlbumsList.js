@@ -64,6 +64,8 @@ export default class AlbumsList extends React.Component {
       // refetch albums
       .then(this.refreshAlbums)
       .catch(err => this.setState({ err: errorMessage(err) }))
+
+    this.props.onVoteAction({ type: 'upvote', value: 1 })
   }
 
   _onUserSelect(user) {
@@ -87,9 +89,9 @@ export default class AlbumsList extends React.Component {
             
             <div className="fl">
               <div className="mt2 pt1 fl mr3">
-                <div className="fl f6 w1 mr3 color--purple">{(i + 1) + '.'}</div>
-                <div className="fl f6 w1 mr3 color--green">{a.pointsNow}</div>
-                <div className="fl f6 w1 color--gray1">{a.pointsTotal}</div>
+                <div className="fl f6 w1 mr3 color--purple mw--mono">{(i + 1) + '.'}</div>
+                <div className="fl f6 w1 mr3 color--green mw--mono">{a.pointsNow}</div>
+                <div className="fl f6 w1 color--gray1 mw--mono">{a.pointsTotal}</div>
               </div>
             </div>
             <img className="mw-album-list__item__img fl mr3" width="46" height="46" src={"" || a.image[1]} alt="" onClick={this.onItemClick.bind(null, a._id)} />
