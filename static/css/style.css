@@ -5251,17 +5251,8 @@ a {
   -webkit-transition: background-color 0.25s ease-out;
   transition: background-color 0.25s ease-out; }
   .mw-album-list__item__img {
-    box-shadow: 0px 1px 22px 0 rgba(0, 0, 0, 0.2); }
-  .mw-album-list__item__up {
-    width: 46px;
-    height: 46px;
-    line-height: 38px;
-    text-align: center;
-    color: #4A4A4A;
-    font-size: 14px;
-    background: transparent;
-    border: 1px solid #ffffff;
-    box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.08);
+    position: relative;
+    box-shadow: 0px 1px 22px 0 rgba(44, 44, 44, 0.2);
     -moz-transform: translateY(-4px);
     -o-transform: translateY(-4px);
     -ms-transform: translateY(-4px);
@@ -5271,10 +5262,23 @@ a {
     -o-transition: all 2s cubic-bezier(0.13, 0.63, 0.34, 1.58);
     -webkit-transition: all 2s cubic-bezier(0.13, 0.63, 0.34, 1.58);
     transition: all 2s cubic-bezier(0.13, 0.63, 0.34, 1.58); }
-    .mw-album-list__item__up:hover {
-      background: #fdfdfd;
-      box-shadow: 0px 2px 6px rgba(33, 33, 33, 0.1);
+    .mw-album-list__item__img::after {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 50px;
+      height: 50px;
       border: 1px solid #53354A;
+      opacity: 0;
+      content: '';
+      -moz-transition: opacity 1s easeIn;
+      -o-transition: opacity 1s easeIn;
+      -webkit-transition: opacity 1s easeIn;
+      transition: opacity 1s easeIn; }
+    .mw-album-list__item__img:hover {
+      cursor: pointer;
+      background: #fdfdfd;
+      box-shadow: 0px 1px 26px 0 rgba(44, 44, 44, 0.25);
       -moz-transform: translateY(-8px);
       -o-transform: translateY(-8px);
       -ms-transform: translateY(-8px);
@@ -5284,9 +5288,10 @@ a {
       -o-transition: all 0.1s cubic-bezier(0.13, 0.63, 0.34, 1.58);
       -webkit-transition: all 0.1s cubic-bezier(0.13, 0.63, 0.34, 1.58);
       transition: all 0.1s cubic-bezier(0.13, 0.63, 0.34, 1.58); }
-    .mw-album-list__item__up:active {
+      .mw-album-list__item__img:hover::after {
+        opacity: 1; }
+    .mw-album-list__item__img:active {
       box-shadow: 0px 0px 0px rgba(33, 33, 33, 0.1);
-      border: 1px solid #bcbfbf;
       -moz-transform: translateY(5px);
       -o-transform: translateY(5px);
       -ms-transform: translateY(5px);
@@ -5296,11 +5301,19 @@ a {
       -o-transition: all 0.15s cubic-bezier(0.13, 0.63, 0.34, 1.58);
       -webkit-transition: all 0.15s cubic-bezier(0.13, 0.63, 0.34, 1.58);
       transition: all 0.15s cubic-bezier(0.13, 0.63, 0.34, 1.58); }
-    .mw-album-list__item__up:not(:active), .mw-album-list__item__up:hover:not(:active) {
+    .mw-album-list__item__img:not(:active), .mw-album-list__item__img:hover:not(:active) {
       -moz-transition: all 0.5s cubic-bezier(0.13, 0.63, 0.34, 1.58);
       -o-transition: all 0.5s cubic-bezier(0.13, 0.63, 0.34, 1.58);
       -webkit-transition: all 0.5s cubic-bezier(0.13, 0.63, 0.34, 1.58);
       transition: all 0.5s cubic-bezier(0.13, 0.63, 0.34, 1.58); }
+  .mw-album-list__item__up {
+    width: 46px;
+    height: 46px;
+    line-height: 33px;
+    text-align: center;
+    color: #4A4A4A;
+    font-size: 14px;
+    background: transparent; }
   .mw-album-list__item.delta__-10 {
     -webkit-animation: moveY_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);
     -moz-animation: moveY_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86), green_-10 0.817s 1 cubic-bezier(0.785, 0.135, 0.15, 0.86);

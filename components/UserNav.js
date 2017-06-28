@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import axios from 'axios'
 
+import Dollars from './Dollars'
 import { apiRequest } from '../utils/api'
 
 
 class UserNav extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { user: null, points: null }
+    this.state = { user: null, points: null, dollars: null }
   }
 
   componentDidMount() {
@@ -24,7 +25,13 @@ class UserNav extends React.Component {
         .then(res => {
           this.setState({ points: res.data })
         })
-        .catch(console.log)
+        .catch(e => console.log(e))
+
+      api.get('/users/dollars')
+        .then(res => {
+          this.setState({ dollars: res.data })
+        })
+        .catch(e => console.log(e))
     }
   }
 
@@ -45,7 +52,10 @@ class UserNav extends React.Component {
                   <p className="fl f6 lh-solid v-top b mr1 pointer dim color--purple-light">{this.state.user.username}</p>
                 </div>
               }
-              <p className="fl f6 lh-solid v-top">{ this.state.points && this.state.points.sum }</p>
+              <p className="fl f6 lh-solid v-top mr1">{ this.state.points && this.state.points.sum }</p>
+              <div className="fl f6 lh-solid v-top">
+                <Dollars data={ this.state.dollars } />
+              </div>
             </div>
           </Link>
   			</div>

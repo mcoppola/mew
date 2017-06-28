@@ -46,6 +46,7 @@ export default class extends React.Component {
   }
 
   removeSelectedUser() {
+    console.log('removeSelectedUser')
     this.setState({ selectedUser: null })
     this.AlbumsList.setQuery(null)
   }
@@ -57,7 +58,7 @@ export default class extends React.Component {
         <div className="h-100">
           <div className="cf mw7 tl ma0 center">
             <Nav userToken={ this.props.userToken } path={ this.props.path } />
-            <div className="w-80 fl">
+            <div className="w-70 fl">
               <h2 className="f4 mb2 color--purple"><span className="lh-title v-middle">/#NowPlaying</span>
               { this.state.selectedUser &&  
                   <div className="dib tc ml1 lh-title v-middle" onClick={e => this.removeSelectedUser() }>
@@ -81,7 +82,7 @@ export default class extends React.Component {
                 </div>  
               </div>
             </div>
-            <div className="w-20 fl">
+            <div className="w-30 fl">
               <h2 className="f4 mb2 color--purple">Users</h2>
               <div>
                 <Users />
@@ -115,7 +116,7 @@ class Users extends React.Component {
         {this.state.err && <p>{this.state.err}</p>}
         {this.state.users.map( u => {
           return (
-              <div className="cf">
+              <div className="cf" key={u.id}>
                 <div className="fl tc mr1">
                     <img src={u.profileImage}
                         className="br-100 h1 w1 dib" alt=""></img>
