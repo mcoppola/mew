@@ -1,8 +1,9 @@
 import axios from 'axios';
+import config from '../config/constants'
 
 
 export const apiRequest = (user) => axios.create({
-  baseURL: 'http://localhost:4567/',
+  baseURL: config.api.uri,
   headers: {
     'Content-Type': 'application/json',
     'Authorization': user ||  null

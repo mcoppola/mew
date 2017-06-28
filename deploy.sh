@@ -4,12 +4,12 @@
 ## CHANGE port number
 
 echo ""
-echo "Deploying WEBSITE on prod server 104.236.220.177"
+echo "Deploying mew-web on prod server 104.236.220.177"
 echo "-------------------------------------------"
 ssh nodeapps@104.236.220.177 '
 eval `ssh-agent` && ssh-add ~/.ssh/id_rsa
-cd ~/sites/WEBSITE
+cd ~/sites/mew/web
 git pull
 forever stop 1
-forever start app.js -p 3001
+forever start app.js -p 3009
 '
