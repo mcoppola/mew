@@ -79,18 +79,21 @@ class Dollars extends React.Component {
   	this.timeouts = []
     this.tick = this.tick.bind(this)
     this.clearTimeouts = this.clearTimeouts.bind(this)
+    this.clearTimeouts()
   }
 
   componentDidMount() {
   	this.duration    = 1000 // in ms
-    this.fps         = 1 // frames per second
+    this.fps         = 30 // frames per second
     this.step  			 = 1 / ((this.duration / 1000) * this.fps)
     this.idx         = 1
 
+    this.clearTimeouts()
     this.tick()
   }
 
   componentDidUpdate(prevProps, prevState) {
+    this.clearTimeouts()
   	this.tick()
   }
 

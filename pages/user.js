@@ -6,6 +6,7 @@ import { canUseDOM } from 'exenv';
 
 import Head from '../components/Head'
 import Nav from '../components/Nav'
+import Dollars from '../components/Dollars'
 
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth'
 import { apiRequest, errorMessage, upvoteAlbum, findOrCreateAlbum, userFromToken } from '../utils/api'
@@ -50,6 +51,12 @@ export default class extends React.Component {
       this.api.get('/users/points')
         .then(res => {
           this.setState({ points: res.data })
+        })
+        .catch(e => console.log(e))
+
+      this.api.get('/users/dollars')
+        .then(res => {
+          this.setState({ dollars: res.data })
         })
         .catch(e => console.log(e))
     }
@@ -102,7 +109,13 @@ export default class extends React.Component {
               <div className="fl w-80">
                 <div>
                   { this.state.points &&
-                    <p><span className="b">{ this.state.points.sum }</span> total points</p>
+                    <p><span className="b">{ this.state.points.sum }</span> points</p>
+                  }
+                  {
+                    this.state.dollars &&
+                    <div className="dib">
+                      <Dollars data={this.state.dollars}/>
+                    </div>
                   }
                 </div>
               </div>
