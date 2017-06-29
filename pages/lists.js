@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import { style } from 'glamor'
 import { } from 'lodash'
 import Head from 'next/head'
 import axios from 'axios'
@@ -61,12 +60,3 @@ export default class extends React.Component {
   }
 }
 
-
-
-
-const styles = {
-  'inner': style({
-    margin: '0 auto',
-    color: 'rgb(97, 97, 97)'
-  })
-}

@@ -13,8 +13,8 @@
     "next": "^2.4.4",
     "ramda": "*",
     "ramda-fantasy": "*",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "spotify-web-api-node": "^2.4.0"
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "next",
+    "start": "next start -p $PORT",
     "dev": "gulp dev | npm start"
   }
 }

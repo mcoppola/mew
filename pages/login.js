@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import { style } from 'glamor'
 import axios from 'axios';
 
 import Head from '../components/Head'
@@ -35,7 +34,7 @@ export default class extends React.Component {
     return (
       <div>
         <Head/>
-        <div {...styles.inner} className="cf mw7 mt5">
+        <div className="cf mw7 mt5">
           <Nav userToken={ this.props.userToken } />
           {!this.state.showCreateForm && <LoginForm />}
           {this.state.showCreateForm && <CreateAccountForm />}
@@ -143,15 +142,6 @@ class CreateAccountForm extends React.Component {
       </div>
     )
   }
-}
-
-
-
-const styles = {
-  'inner': style({
-    margin: '0 auto',
-    color: 'rgb(97, 97, 97)'
-  })
 }
 
 

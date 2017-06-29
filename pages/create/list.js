@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import { style } from 'glamor'
 import { merge } from 'lodash'
 import Head from 'next/head'
 import axios from 'axios'
@@ -182,7 +181,7 @@ export default class extends React.Component {
           <title>Mew</title>
           <link rel="stylesheet" href="/static/tachyons.min.css"/>
         </Head>
-        <div {...styles.inner} className="cf mw7 mt5">
+        <div className="cf mw7 mt5">
           <Nav userToken={this.props.userToken} />
           <div className="cf mt3">
             <h3 className="mb5">New List</h3>
@@ -192,16 +191,4 @@ export default class extends React.Component {
       </div>
     );
   }
-}
-
-
-const styles = {
-  'inner': style({
-    margin: '0 auto',
-    color: 'rgb(97, 97, 97)'
-  }),
-  'add': style({
-    color: '#137b23',
-    cursor: 'pointer'
-  })
 }
