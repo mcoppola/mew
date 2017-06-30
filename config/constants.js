@@ -14,7 +14,7 @@ const environmentConfigs = {
   },
   production: {
     api: {
-      uri: 'http://api.mew.mattcoppola.com:4567/',
+      uri: 'https://mew.mattcoppola.com/',
     }
   }
 }

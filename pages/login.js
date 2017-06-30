@@ -13,6 +13,7 @@ import redirect from '../utils/redirect'
 export default class extends React.Component {
   static async getInitialProps (ctx) {
     const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
+    this.api = apiRequest(userToken)
 
     return { userToken }
   }
@@ -34,7 +35,7 @@ export default class extends React.Component {
     return (
       <div>
         <Head/>
-        <div className="cf mw7 mt5">
+        <div className="cf mw7 mt5 tl center">
           <Nav userToken={ this.props.userToken } />
           {!this.state.showCreateForm && <LoginForm />}
           {this.state.showCreateForm && <CreateAccountForm />}
@@ -58,7 +59,7 @@ class LoginForm extends React.Component {
   handleLoginSubmit (e) {
     e.preventDefault()
 
-    axios.post('http://localhost:4567/auth/login', {
+    this.api.post('/auth/login', {
       username: this.refs.username.value,
       password: this.refs.password.value
     })

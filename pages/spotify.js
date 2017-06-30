@@ -33,7 +33,7 @@ export default class extends React.Component {
   componentDidMount() {
   	this.spotifyApi = new SpotifyWebApi({
   	  clientId : '24ff5979c65f4eff8b7ece06329d8afc',
-  	  redirectUri : 'http://localhost:3000/spotify-callback'  
+  	  redirectUri : '/spotify-callback'  
   	})
 
 
