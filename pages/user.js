@@ -82,7 +82,6 @@ export default class extends React.Component {
       })
   }
 
-
   render() {
     return (
       <div>
@@ -159,6 +158,16 @@ export default class extends React.Component {
                     </div>
                   }
                 </div>
+                {
+                  this.state.changed &&
+                  <div className="cf mt4">
+                    <input 
+                      type="submit" 
+                      onClick={ this.saveSettings } 
+                      className="fl f6 fb dib ba pa2 ph3 bg-light-green dim pointer" 
+                      value="Save" />
+                  </div>
+                }
               </div>
 
               <div className="cf mt5">

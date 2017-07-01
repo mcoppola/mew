@@ -116,6 +116,7 @@ class CreateAccountForm extends React.Component {
       let token = res.data.token
       setToken(token)
       this.setState({ err: 'Logged in!' })
+      redirect({}, '/')
     })
     .catch( err => {
       this.setState({ err:  errorMessage(err) })

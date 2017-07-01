@@ -30,7 +30,6 @@ export default class extends React.Component {
   componentDidMount() {
   	this.spotifyApi = new SpotifyWebApi({
   	  clientId : '24ff5979c65f4eff8b7ece06329d8afc',
-      clientSecret: 'b20a6499e02642e6b2449827da0288d1',
   	  redirectUri : 'http://localhost:3000/spotify-callback'  
   	})
 
@@ -38,7 +37,7 @@ export default class extends React.Component {
       // aply for code grant through api proxy
       this.apiCodeGrant(this.props.query.code)
     } else {
-      redirect('/spotify')
+      redirect('/user')
     }
   }
 
@@ -65,7 +64,7 @@ export default class extends React.Component {
 
       console.log('redirect...');
 
-      redirect('/spotify')
+      redirect('/user')
 
     }, err => console.log )
   }
