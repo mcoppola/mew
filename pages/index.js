@@ -26,6 +26,7 @@ export default class extends React.Component {
     this.onAlbumSelect = this.onAlbumSelect.bind(this)
     this.onUserSelect = this.onUserSelect.bind(this)
     this.onVoteAction = this.onVoteAction.bind(this)
+    this.onRemoveUser = this.onRemoveUser.bind(this)
 
     this.state = { selectedAlbum: null, selectedUser: null, actions: [] } 
   }
@@ -50,6 +51,10 @@ export default class extends React.Component {
     this.setState({ actions: this.state.actions.concat([action]) })
   }
 
+  onRemoveUser() {
+    this.removeSelectedUser()
+  }
+
   removeSelectedUser() {
     this.setState({ selectedUser: null })
     this.AlbumsList.setQuery(null)
@@ -61,29 +66,19 @@ export default class extends React.Component {
         <Head/>
         <div className="h-100">
           
-            <div className="fixed w-100 z-2 bg--white">
-              <div className="cf mw7 tl ma0 center">
-                <Nav userToken={ this.props.userToken } path={ this.props.path } actions={ this.state.actions } />
-                <div className="cf">
-                  <div className="w-70 fl">
-                    <h2 className="f4 color--purple"><span className="lh-title v-middle">/#NowPlaying</span>
-                    { this.state.selectedUser &&  
-                        <div className="dib tc ml1 lh-title v-middle" onClick={e => this.removeSelectedUser() }>
-                          <img src={this.state.selectedUser.profileImage}
-                              className="br-100 h1 w1 dib" alt=""></img>
-                        </div>
-                    }</h2>
-                  </div>
-                  <div className="w-30 fl">
-                    <h2 className="f4 color--purple">Users</h2>
-                  </div>
-                  <div className="fl w-100 bb border-color--purple o-70"></div>
-                </div>
-              </div>
+          <div className="fixed w-100 z-2 bg--white">
+            <div className="cf mw7 tl ma0 center">
+              <Nav 
+                  userToken={ this.props.userToken } 
+                  path={ this.props.path } 
+                  actions={ this.state.actions } 
+                  selectedUser={this.state.selectedUser}
+                  onRemoveUser={this.onRemoveUser } />
             </div>
+          </div>
 
           <div className="cf mw7 tl ma0 center z-1 pt2">
-            <div className="cf mt5 pt3">
+            <div className="cf mt3 pt3">
               <div className="w-70 fl">
                 <div>
                   <div>
@@ -102,7 +97,7 @@ export default class extends React.Component {
                   </div>  
                 </div>
               </div>
-              <div className="w-30 fl">
+              <div className="w-30 fl mt2">
                 <Users />
               </div>
             </div>

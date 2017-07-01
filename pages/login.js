@@ -13,8 +13,6 @@ import redirect from '../utils/redirect'
 export default class extends React.Component {
   static async getInitialProps (ctx) {
     const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(ctx.req)
-    this.api = apiRequest(userToken)
-
     return { userToken }
   }
 
@@ -25,7 +23,6 @@ export default class extends React.Component {
     this.state = { showCreateForm: false, err: null }
   }
 
-
   toggleCreateForm (e) {
     e.preventDefault()
     this.setState({ showCreateForm: !this.state.showCreateForm })
@@ -35,11 +32,13 @@ export default class extends React.Component {
     return (
       <div>
         <Head/>
-        <div className="cf mw7 mt5 tl center">
+        <div className="cf mw7 tl center">
           <Nav userToken={ this.props.userToken } />
-          {!this.state.showCreateForm && <LoginForm />}
-          {this.state.showCreateForm && <CreateAccountForm />}
-          <div className="f6 mt3 dim pointer" onClick={this.toggleCreateForm}>{this.state.showCreateForm ? 'Back to Login' : 'Create Account' }</div>
+            <div className="mt5">
+            {!this.state.showCreateForm && <LoginForm userToken={this.props.userToken} />}
+            {this.state.showCreateForm && <CreateAccountForm />}
+            <div className="f6 mt3 dim pointer" onClick={this.toggleCreateForm}>{this.state.showCreateForm ? 'Back to Login' : 'Create Account' }</div>
+          </div>
         </div>
       </div>
     )
@@ -51,8 +50,9 @@ export default class extends React.Component {
 class LoginForm extends React.Component {
   constructor(props) {
     super(props)
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
+    this.api = apiRequest(this.props.userToken)
 
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.state = { err: null, msg: null }
   }
 

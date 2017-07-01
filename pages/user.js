@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react'
 import Link from 'next/link'
 import { canUseDOM } from 'exenv';
-// hack
-// const filestack = canUseDOM ? require('filestack-js') : {}
 
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 import Dollars from '../components/Dollars'
+import Spotify from '../components/Spotify'
 
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth'
 import { apiRequest, errorMessage, upvoteAlbum, findOrCreateAlbum, userFromToken } from '../utils/api'
@@ -91,17 +90,20 @@ export default class extends React.Component {
         <div className="h-100">
           <div className="cf mw7 tl ma0 center">
             <Nav userToken={ this.props.userToken } />
-            <div className="cf">
+
+            <div className="cf mt5">
               { this.state.user &&
                   <div>
                     <div className="fl tc mr1">
                       <img src={ this.state.formValues.profileImage ? this.state.formValues.profileImage : this.state.user.profileImage }
                           className="br-100 h2 w2 dib" alt="Image"></img>
                     </div>
-                    <h6 className="b" style={{ color: '#948bff' }} >{ this.state.user.username }</h6>
+                    <h6 className="fl b" style={{ color: '#948bff' }} >{ this.state.user.username }</h6>
+                    <Link href="/logout"><p className="f6 measure-wide fl mt2 ml2 pointer dim">Logout</p></Link> 
                   </div>
                 }
             </div>
+
             <div className="cf mt5">
               <div className="fl w-20">
                 <h6 className="f5 b">Stats</h6>
@@ -158,22 +160,24 @@ export default class extends React.Component {
                   }
                 </div>
               </div>
-                {
-                  this.state.changed &&
-                  <div className="cf mt4">
-                    <input 
-                      type="submit" 
-                      onClick={ this.saveSettings } 
-                      className="fl f6 fb dib ba pa2 ph3 bg-light-green dim pointer" 
-                      value="Save" />
-                  </div>
-                }
-            </div>
-            <Link href="/logout"><p className="f6 measure-wide mt4 lh-solid v-top fl pointer dim">Logout</p></Link> 
 
-           </div>
-      	</div>
+              <div className="cf mt5">
+                <div className="fl w-20 mt5">
+                  <h6 className="f5 b">Spotify</h6>
+                </div>
+                <div className="fl w-80 mt5">
+                  <div className="cf">
+                    { this.state.user &&
+                      <Spotify userToken={this.props.userToken}/>
+                    }
+                  </div>
+                </div>
+             </div>
+
+            </div>
+          </div>   
+        </div>
       </div>
-      )
+    )
 	}
 }

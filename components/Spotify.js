@@ -6,18 +6,13 @@ import SpotifyWebApi from 'spotify-web-api-node'
 import Head from '../components/Head'
 import Nav from '../components/Nav'
 
+import constants from '../config/constants'
+
 import { getTokenFromCookie, getTokenFromLocalStorage } from '../utils/auth'
 import { apiRequest, errorMessage, upvoteAlbum, findOrCreateAlbum, userFromToken } from '../utils/api'
 
 
 export default class extends React.Component {
-  static async getInitialProps ({ req, query, pathname }) {
-    // Auth
-    const userToken = process.browser ? getTokenFromLocalStorage() : getTokenFromCookie(req)
-
-    return { userToken, query, path: pathname }
-  }
-
   constructor(props) {
     super(props)
 
@@ -33,9 +28,8 @@ export default class extends React.Component {
   componentDidMount() {
   	this.spotifyApi = new SpotifyWebApi({
   	  clientId : '24ff5979c65f4eff8b7ece06329d8afc',
-  	  redirectUri : 'http://localhost:3000/spotify-callback'  
+  	  redirectUri : constants.spotify.callback  
   	})
-
 
     this.userSpotifyAccess()
   }
@@ -90,30 +84,31 @@ export default class extends React.Component {
         <Head/>
         <div className="h-100">
           <div className="cf mw7 tl ma0 center">
-            <Nav userToken={ this.props.userToken } path={this.props.path} />
             <div className="cf">
               <div>
-                { this.state.userSpotifyAccess ? 
+                { this.state.userSpotifyAccess && 
                    <div className="dib">
                     <p className="db mr2 color--green">Connected to Spotify</p>
                    </div>
-                   :
-                   <p className="dib mr2 pointer dim" onClick={this.authSpotify}>Authroize Spotify</p>
+                }
+                { !this.state.userSpotifyAccess &&
+                  <p className="dib mr2 pointer dim color--green" onClick={this.authSpotify}>Authroize Spotify</p>
                 }
                 { this.state.topTracks.length &&
-                  <p className="dib pointer dim" onClick={this.addTopTracks}>Add Top Tracks</p>
-                }
-                <div className="mt3">
-                  <h6 className="mw--med mb3 f5">My Top Albums on Spotify</h6>
-                  { this.state.topTracks.map( t => 
-                    <div className="mw-album-list__item cf" key={t.album.id}>
-                      <img className="fl mr3" width="36" height="36" src={t.album.images[1].url} alt=""/>
-                      <div className="mt1 pt1">
-                        <div className="fl mw--small "><span className="mw--med color--blak">{t.album.name}</span> - <span className="color--dark">{t.artists[0].name}</span></div>
-                      </div>
+                  <div>
+                    <div className="mt3">
+                      <h6 className="mw--med mb3 f5">My Top Albums on Spotify</h6>
+                      { this.state.topTracks.map( t => 
+                        <div className="mw-album-list__item cf" key={t.album.id}>
+                          <img className="fl mr3" width="36" height="36" src={t.album.images[1].url} alt=""/>
+                          <div className="mt1 pt1">
+                            <div className="fl mw--small "><span className="mw--med color--blak">{t.album.name}</span> - <span className="color--dark">{t.artists[0].name}</span></div>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </div>
+                }
               </div>
             </div>
            </div>
@@ -122,3 +117,5 @@ export default class extends React.Component {
       )
 	}
 }
+
+// <p className="dib pointer dim" onClick={this.addTopTracks}>Add Top Tracks</p>

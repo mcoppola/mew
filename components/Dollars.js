@@ -28,7 +28,7 @@ class Canvas extends React.Component {
   paint(ctx) {
   	if (this.props.dollars) {
 	    ctx.save()
-	    ctx.translate(0, this.fontSize - 2)
+	    ctx.translate(0, this.fontSize)
 	    ctx.fillStyle = '#38cc80'
 	    ctx.font = this.fontSize + "px monospace"
 	    ctx.fillText('$'+ this.props.dollars, 0, 0)

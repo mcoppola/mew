@@ -5,6 +5,9 @@ const environmentConfigs = {
   development: {
     api: {
       uri: 'http://localhost:4567/',
+    },
+    spotify: {
+      callback: 'http://localhost:3000/user'
     }
   },
   test: {
@@ -15,6 +18,9 @@ const environmentConfigs = {
   production: {
     api: {
       uri: 'https://mew.mattcoppola.com/',
+    },
+    spotify: {
+      callback: 'https://alpha.mattcoppola.com/user'
     }
   }
 }

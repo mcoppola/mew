@@ -10,23 +10,25 @@
     "js-cookie": "2.1.3",
     "jwt-decode": "2.1.0",
     "lodash": "*",
+    "natives": "^1.1.0",
     "next": "^2.4.6",
     "ramda": "*",
     "ramda-fantasy": "*",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "sigmund": "^1.0.1",
     "spotify-web-api-node": "^2.4.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
-    "gulp-watch": "^4.3.8"
+    "gulp-sass": "^3.1.0",
+    "gulp-watch": "^4.3.11"
   },
   "scripts": {
-    "start": "next start",
+    "dev": "next",
     "build": "next build",
-    "dev": "next"
+    "start": "next start"
   }
 }

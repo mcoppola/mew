@@ -22,7 +22,6 @@ export const setToken = (token) => {
     return
   }
   window.localStorage.setItem('mewToken', token)
-  // window.localStorage.setItem('mew_user', JSON.stringify(jwtDecode(token)))
   Cookie.set('mewToken', token)
 }
 
@@ -31,7 +30,6 @@ export const unsetToken = () => {
     return
   }
   window.localStorage.removeItem('mewToken')
-  // window.localStorage.removeItem('mew_user')
   window.localStorage.removeItem('mewSecret')
   Cookie.remove('mewToken')
 
@@ -47,8 +45,6 @@ export const getTokenFromCookie = (req) => {
     return undefined
   }
   return jwtCookie.split('=')[1];
-  // const jwt = jwtCookie.split('=')[1]
-  // return jwtDecode(jwt)
 }
 
 export const getTokenFromLocalStorage = () => {

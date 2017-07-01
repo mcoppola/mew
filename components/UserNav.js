@@ -42,30 +42,28 @@ class UserNav extends React.Component {
   	return user ? 
   		(
   			<div>
-	  			<Link href="/user">
-            <div>
-              { this.state.user &&
-                <div className="fl mr2">
-                  <div className="fl tc mr1">
-                    <img src={this.state.user.profileImage}
-                        className="br-100 h1 w1 dib" alt=""></img>
-                  </div>
-                  <p className="fl f6 lh-solid v-top b pointer dim color--purple-light">{this.state.user.username}</p>
+          <div>
+            { this.state.user &&
+              <div className="fl mr2">
+                <div className="fl tc mr1 lh-nav pt1">
+                  <img src={this.state.user.profileImage}
+                      className="br-100 h1 w1 dib" alt=""></img>
                 </div>
-              }
-              <p className="fl f6 lh-solid v-top mr2 mw--mono">
-                <span className="color--purple">&bull;</span>
-                { this.state.points && 
-                  this.state.points.sum + (this.props.actions ? R.sum(this.props.actions.map(R.prop('value'))) : 0) }
-              </p>
-              <div className="fl f6 lh-solid v-top mw--mono">
-                <Dollars data={ this.state.dollars } actions={ this.props.actions } />
+                <Link href="/user"><p className="fl f6 lh-nav v-top b pointer dim color--purple-light">{this.state.user.username}</p></Link>
               </div>
+            }
+            <p className="fl f6 lh-nav v-top mr2 mw--mono">
+              <span className="color--purple">&bull;</span>
+              { this.state.points && 
+                this.state.points.sum + (this.props.actions ? R.sum(this.props.actions.map(R.prop('value'))) : 0) }
+            </p>
+            <div className="fl f6 lh-nav v-top mw--mono">
+              <Dollars data={ this.state.dollars } actions={ this.props.actions } />
             </div>
-          </Link>
+          </div>
   			</div>
   		) : (
-  			<Link href="/login"><p className="f6 measure-wide fl mr1 pointer dim b">Login</p></Link>
+  			<Link href="/login"><p className="f6 lh-nav measure-wide fl mr1 pointer dim b">Login</p></Link>
   		)
   }
 }

@@ -4,6 +4,8 @@
 @import './global/_timing';
 @import './global/_easing';
 
+// Vendor
+@import './vendor/_simple-line-icons';
 
 // Global
 @import './global/_reset';
@@ -16,3 +18,4 @@
 
 // Components
 @import './components/_albumList';
+@import './components/_nav';

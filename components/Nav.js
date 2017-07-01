@@ -9,25 +9,39 @@ const links = [{ label: 'Home', path: '/' },
 class Nav extends React.Component {
   constructor(props) {
     super(props)
+    this._onRemoveUser = this._onRemoveUser.bind(this)
     this.state = { user: null }
   }
 
   linkStyle = l =>  "f6 measure-wide fl mr2 pointer dim color--" + (l.path === this.props.path ? 'purple' : 'gray1')
 
+  _onRemoveUser() {
+    this.props.onRemoveUser()
+  }
 
   render() {
     return(
-        <div className="cf mv3">
+      <div>
+        <div className="cf">
           <div className="w-70 fl">
-            { links.map( l => 
-                <Link href={l.path} key={l.label + l.path}><h3 className={this.linkStyle(l)} >{l.label}</h3></Link>
-            )}
+            <div className="fl f5 mr2">
+              <Link href="/"><span className="f4 b lh-nav v-mid color--purple dim pointer">/</span></Link>
+            </div>
+            <h2 className="fl f4 lh-nav v-btm color--purple"><span className="">#NowPlaying</span>
+            { this.props.selectedUser &&  
+                <div className="dib tc ml1 lh-nav v-btm dim pointer" onClick={e => this._onRemoveUser() }>
+                  <img src={this.props.selectedUser.profileImage}
+                      className="br-100 h1 w1 dib" alt=""></img>
+                </div>
+            }</h2>
           </div>
           <div className="w-30 fl">
             <UserNav userToken={ this.props.userToken } actions={this.props.actions} />
           </div>
         </div>
-      )
+        <div className="fl w-100 bb border-color--purple o-70"></div>
+      </div>
+    )
   }
 }
 
