@@ -45,6 +45,7 @@ export default class extends React.Component {
 
   onUserSelect(user) {
     this.setState({ selectedUser: user })
+    this.AlbumsList.setQuery('/albums/user/'+user.id+'?limit=30')
   }
 
   onVoteAction(action) {
@@ -98,7 +99,7 @@ export default class extends React.Component {
                 </div>
               </div>
               <div className="w-30 fl mt2">
-                <Users />
+                <Users onUserSelect={ this.onUserSelect } />
               </div>
             </div>
           </div>
@@ -123,13 +124,17 @@ class Users extends React.Component {
     this.setState({ users: users.data, err: null })
   }
 
+  _onUserSelect(user) {
+    this.props.onUserSelect(user)
+  }
+
   render(){
     return (
       <div>
         {this.state.err && <p>{this.state.err}</p>}
         {this.state.users.map( u => {
           return (
-              <div className="cf" key={u.id}>
+              <div className="cf pointer dim" key={u.id} onClick={e => this._onUserSelect(u) }>
                 <div className="fl tc mr1">
                     <img src={u.profileImage}
                         className="br-100 h1 w1 dib" alt=""></img>
