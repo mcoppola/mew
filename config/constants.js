@@ -7,7 +7,7 @@ const environmentConfigs = {
       uri: 'http://localhost:4567/',
     },
     spotify: {
-      callback: 'http://localhost:3000/user'
+      callback: 'http://localhost:3000/spotify-callback'
     }
   },
   test: {
@@ -20,7 +20,7 @@ const environmentConfigs = {
       uri: 'https://mew.mattcoppola.com/',
     },
     spotify: {
-      callback: 'https://alpha.mattcoppola.com/user'
+      callback: 'https://alpha.mattcoppola.com/spotify-callback'
     }
   }
 }
