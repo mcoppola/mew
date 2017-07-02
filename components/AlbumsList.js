@@ -32,8 +32,9 @@ export default class AlbumsList extends React.Component {
     let oldPos = this.state.albums.map((a, i) => { return { id: a._id, pos: i }})
     // fetch albums
     let res = await this.api.get(this.state.query || '/albums?limit=30')
-    let albums = this.calcDeltas(oldPos, this.sortByPoints(res.data))
 
+    // user filter or album upvote?
+    let albums = this.calcDeltas(oldPos, this.sortByPoints(res.data))
     this.setState({ albums, err: null })
 
     // after UI transition, end refreshing
@@ -105,7 +106,7 @@ export default class AlbumsList extends React.Component {
           <div className={ this.itemClass(a) } key={a._id +'__'+ a.title}>
             
             <div className="fl f6 w1 mt2 pt1 mr3 color--purple mw--mono">{(i + 1) + '.'}</div>
-            <img className="mw-album-list__item__img fl mr3" width="46" height="46" src={"" || a.image[1]} alt="" onClick={this.onItemClick.bind(null, a._id)} />
+            <img className="mw-album-list__item__img fl mr3" src={"" || a.image[1]} alt="" onClick={this.onItemClick.bind(null, a._id)} />
 
             <div className="fl">
               <div className="mt2 pt1 fl mr3">
