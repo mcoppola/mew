@@ -67,7 +67,7 @@ export default class extends React.Component {
         <Head/>
         <div className="h-100">
           
-          <div className="fixed w-100 z-2 bg--white">
+          <div className="fixed z-1 w-100">
             <div className="cf mw7 tl ma0 center">
               <Nav 
                   userToken={ this.props.userToken } 
@@ -78,6 +78,14 @@ export default class extends React.Component {
             </div>
           </div>
 
+          <div className="w-100 fixed">
+            <div className="cf mw7 center mh0 pt3 mt1">
+              <div className="w-30 fr mt3 pt2">
+                  <Users onUserSelect={ this.onUserSelect } />
+              </div>
+            </div>
+          </div>
+          
           <div className="cf mw7 tl ma0 center z-1 pt2">
             <div className="cf mt3 pt3">
               <div className="w-70 fl">
@@ -98,11 +106,13 @@ export default class extends React.Component {
                   </div>  
                 </div>
               </div>
-              <div className="w-30 fl mt2">
-                <Users onUserSelect={ this.onUserSelect } />
-              </div>
             </div>
           </div>
+
+
+
+
+
         </div>
       </div>
     );

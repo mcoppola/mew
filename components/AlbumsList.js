@@ -10,7 +10,7 @@ export default class AlbumsList extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { err: 'loading albums...', albums: [], refreshing: false, query: null }
+    this.state = { err: 'loading albums...', albums: [], refreshing: false, query: null, lastAlbumClicked: null }
 
     this.refreshAlbums = this.refreshAlbums.bind(this)
     this.onItemClick = this.onItemClick.bind(this)
@@ -27,7 +27,7 @@ export default class AlbumsList extends React.Component {
 
   async refreshAlbums() {
     // if (this.state.refreshing) return
-    this.setState({ refreshing: true })
+    // this.setState({ refreshing: true })
 
     let oldPos = this.state.albums.map((a, i) => { return { id: a._id, pos: i }})
     // fetch albums
@@ -58,10 +58,20 @@ export default class AlbumsList extends React.Component {
   }
 
   async onItemClick(album) {
-    if (this.state.refreshing) return
+    // if (this.state.refreshing) return
 
+    // set clicked state on album
+    // take it off after transition
+    if (album === this.state.lastAlbumClicked) {
+      this.setState({ lastAlbumClicked: null }, () => setTimeout(() => this.setState({ lastAlbumClicked: album }), 1))
+    } else {
+      this.setState({ lastAlbumClicked: album })
+    }
+    clearTimeout(this.clickTimeout)
+    this.clickTimeout = setTimeout(() => this.setState({ lastAlbumClicked: null }), 817)
+
+    // Send upvote request
     upvoteAlbum({ album, userToken: this.props.userToken })
-      // refetch albums
       .then(this.refreshAlbums)
       .catch(err => this.setState({ err: errorMessage(err) }))
 
@@ -80,21 +90,29 @@ export default class AlbumsList extends React.Component {
     return t.length > max ? t.substring(0, max) + '... ' : t
   }
 
+  itemClass(a) {
+    let base = "mw-album-list__item cf "
+    let delta = "delta__" + a.delta
+    let clicked = a._id === this.state.lastAlbumClicked ? " item--clicked" : ""
+    return base + delta + clicked
+  }
+
   render () {
     return (
       <div>
         {this.state.err && <p className="red">{this.state.err}</p>}
         {this.state.albums.map((a, i) => 
-          <div className={"mw-album-list__item cf delta__" + a.delta} key={a._id +'__'+ a.title}>
+          <div className={ this.itemClass(a) } key={a._id +'__'+ a.title}>
             
+            <div className="fl f6 w1 mt2 pt1 mr3 color--purple mw--mono">{(i + 1) + '.'}</div>
+            <img className="mw-album-list__item__img fl mr3" width="46" height="46" src={"" || a.image[1]} alt="" onClick={this.onItemClick.bind(null, a._id)} />
+
             <div className="fl">
               <div className="mt2 pt1 fl mr3">
-                <div className="fl f6 w1 mr3 color--purple mw--mono">{(i + 1) + '.'}</div>
                 <div className="fl f6 w1 mr3 color--green mw--mono">{a.pointsNow}</div>
                 <div className="fl f6 w1 color--gray1 mw--mono">{a.pointsTotal}</div>
               </div>
             </div>
-            <img className="mw-album-list__item__img fl mr3" width="46" height="46" src={"" || a.image[1]} alt="" onClick={this.onItemClick.bind(null, a._id)} />
             
             <div className="fl">
               <div className="cf">
@@ -111,7 +129,6 @@ export default class AlbumsList extends React.Component {
                 </div>
               </div>
             </div>
-            
           </div>
         )}
       </div>
